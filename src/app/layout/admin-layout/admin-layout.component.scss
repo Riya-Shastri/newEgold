@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
-@use "../style/variables";
-@use "../style/transitions";
-@use "../style/breakpoints";
+@use "../../themefolders/theme/style/variables";
+@use "../../themefolders/theme/style/transitions";
+@use "../../themefolders/theme/style/breakpoints";
 
 .matero-container-wrap,
 .matero-container {

@@ -1,0 +1,7 @@
+::ng-deep .dropend .dropdown-toggle::after {
+  display: none;
+}
+
+::ng-deep html:not([dir="rtl"]) .dropdown-toggle::after {
+  display: none;
+}

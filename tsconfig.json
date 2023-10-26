@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "downlevelIteration": true,
+    "strictPropertyInitialization": false,
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

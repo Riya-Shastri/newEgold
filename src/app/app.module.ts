@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
-
 import { CoreModule } from 'app/themefolders/core/core.module';
 import { ThemeModule } from 'app/themefolders/theme/theme.module';
 import { SharedModule } from 'app/themefolders/shared/shared.module';
@@ -14,12 +12,14 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { environment } from '@env/environment';
 import { BASE_URL, httpInterceptorProviders, appInitializerProviders } from 'app/themefolders/core';
-
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from 'app/themefolders/shared/in-mem/in-mem-data.service';
+import { AppRoutingModule } from './app-routing.module';
+import { LayoutModule } from './layout/layout.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomComponentModule } from './custom-component/custom-component.module';
 
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
@@ -31,11 +31,16 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    ReactiveFormsModule,
+    FormsModule,
     ThemeModule,
+    LayoutModule,
     RoutesModule,
     SharedModule,
+    CustomComponentModule,
     FormlyConfigModule.forRoot(),
     NgxPermissionsModule.forRoot(),
     ToastrModule.forRoot(),

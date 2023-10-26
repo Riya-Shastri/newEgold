@@ -1,0 +1,113 @@
+<div class="row" ngPreserveWhitespaces>
+    <div class="col-12">
+        <mat-card class="mb-4">
+            <mat-card-header>
+                <div class="d-flex flex-row">
+                    <strong>
+                        GLOBAL default couriers
+                    </strong>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row" class="mb-3">
+                    <div class="col-md-2">
+                        <div>
+                            <label cLabel class="col-form-label" for="SDToNDVM">
+                                Same Day deliveries
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <!-- 
+                        <div #drop1 ngbDropdown #myDropdown="ngbDropdown">
+                            <button class="btn" id="dropdownConfig" ngbDropdownToggle (click)="setIsOpen()">
+                                <img src="assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt" *ngIf="!isopen" />
+                                <img src="assets/img/icons/Right.svg" alt="cilChevronCircleDownAlt" *ngIf="isopen" />
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                <button ngbDropdownItem>Text</button>
+                                <button ngbDropdownItem>Item-1</button>
+                                <button ngbDropdownItem>Item-2</button>
+                                <button ngbDropdownItem>Item-3</button>
+                                <button ngbDropdownItem>Item-4</button>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+                <div class="row" class="mb-3">
+                    <div class="col-md-2">
+                        <div>
+                            <label cLabel class="col-form-label" for="SDToNDVM">
+                                Next Day deliveries
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+
+                        <div class="btn-group dropend mx-1" (click)="onOutsideClick($event)">
+                            <!-- <div #drop1 ngbDropdown #myDropdown="ngbDropdown">
+                                <button class="btn" id="dropdownConfig" ngbDropdownToggle (click)="setIsOpen()">
+                                    <img src="assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt"
+                                        *ngIf="!isopen" />
+                                    <img src="assets/img/icons/Right.svg" alt="cilChevronCircleDownAlt"
+                                        *ngIf="isopen" />
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                    <button ngbDropdownItem>Text</button>
+                                    <button ngbDropdownItem>Item-1</button>
+                                    <button ngbDropdownItem>Item-2</button>
+                                    <button ngbDropdownItem>Item-3</button>
+                                    <button ngbDropdownItem>Item-4</button>
+                                </div>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" class="mb-3">
+                    <div class="col-md-2">
+                        <div>
+                            <label cLabel class="col-form-label" for="SDToNDVM">
+                                Locker deliveries
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="btn-group dropend mx-1">
+
+                            <!-- <div #drop1 ngbDropdown #myDropdown="ngbDropdown">
+                                <button class="btn" id="dropdownConfig" ngbDropdownToggle (click)="setIsOpen()">
+                                    <img src="assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt"
+                                        *ngIf="!isopen" />
+                                    <img src="assets/img/icons/Right.svg" alt="cilChevronCircleDownAlt"
+                                        *ngIf="isopen" />
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                    <button ngbDropdownItem>Text</button>
+                                    <button ngbDropdownItem>Item-1</button>
+                                    <button ngbDropdownItem>Item-2</button>
+                                    <button ngbDropdownItem>Item-3</button>
+                                    <button ngbDropdownItem>Item-4</button>
+                                </div>
+                            </div> -->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary text-white" routerLink="/">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary text-white mx-1" disabled>
+                        Update
+                    </button>
+                    <button type="submit" class="btn btn-danger text-white mx-1">
+                        Delete
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

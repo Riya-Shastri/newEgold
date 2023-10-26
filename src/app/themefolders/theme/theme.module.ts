@@ -47,5 +47,25 @@ import { CustomizerComponent } from './customizer/customizer.component';
     CustomizerComponent,
   ],
   imports: [SharedModule],
+  exports: [
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+    SidebarComponent,
+    UserPanelComponent,
+    SidemenuComponent,
+    NavAccordionDirective,
+    NavAccordionItemDirective,
+    NavAccordionToggleDirective,
+    SidebarNoticeComponent,
+    TopmenuComponent,
+    TopmenuPanelComponent,
+    HeaderComponent,
+    BrandingComponent,
+    GithubButtonComponent,
+    NotificationComponent,
+    TranslateComponent,
+    UserComponent,
+    CustomizerComponent,
+  ]
 })
 export class ThemeModule { }
