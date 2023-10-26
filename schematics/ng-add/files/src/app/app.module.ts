@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { CoreModule } from '@core/core.module';
-import { ThemeModule } from '@theme/theme.module';
-import { SharedModule } from '@shared/shared.module';
+import { CoreModule } from 'app/themefolders/core/core.module';
+import { ThemeModule } from 'app/themefolders/theme/theme.module';
+import { SharedModule } from 'app/themefolders/shared/shared.module';
 import { RoutesModule } from './routes/routes.module';
 import { FormlyConfigModule } from './formly-config.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
@@ -15,14 +15,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@env/environment';
-import { BASE_URL, httpInterceptorProviders, appInitializerProviders } from '@core';
+import { BASE_URL, httpInterceptorProviders, appInitializerProviders } from 'app/themefolders/core';
 
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-import { LoginService } from '@core/authentication/login.service';
+import { LoginService } from 'app/themefolders/core/authentication/login.service';
 import { FakeLoginService } from './fake-login.service';
 
 @NgModule({
@@ -53,4 +53,4 @@ import { FakeLoginService } from './fake-login.service';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

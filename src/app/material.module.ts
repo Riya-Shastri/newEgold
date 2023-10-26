@@ -41,7 +41,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
-import { PaginatorI18nService } from '@shared/services/paginator-i18n.service';
+import { PaginatorI18nService } from 'app/themefolders/shared/services/paginator-i18n.service';
 
 @NgModule({
   exports: [
@@ -120,4 +120,4 @@ import { PaginatorI18nService } from '@shared/services/paginator-i18n.service';
     },
   ],
 })
-export class MaterialModule {}
+export class MaterialModule { }

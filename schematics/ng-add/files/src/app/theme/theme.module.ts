@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@shared/shared.module';
+import { SharedModule } from 'app/themefolders/shared/shared.module';
 
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
@@ -43,4 +43,4 @@ import { UserComponent } from './widgets/user.component';
   ],
   imports: [SharedModule],
 })
-export class ThemeModule {}
+export class ThemeModule { }

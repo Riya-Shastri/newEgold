@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { PreloaderService, SettingsService } from '@core';
+import { PreloaderService, SettingsService } from 'app/themefolders/core';
 
 @Component({
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  constructor(private preloader: PreloaderService, private settings: SettingsService) {}
+  constructor(private preloader: PreloaderService, private settings: SettingsService) { }
 
   ngOnInit() {
     this.settings.setDirection();

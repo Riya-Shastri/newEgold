@@ -10,7 +10,7 @@ import { RegisterComponent } from './sessions/register/register.component';
 import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
-import { authGuard } from '@core';
+import { authGuard } from 'app/themefolders/core';
 
 const routes: Routes = [
   {
@@ -45,4 +45,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class RoutesRoutingModule {}
+export class RoutesRoutingModule { }
