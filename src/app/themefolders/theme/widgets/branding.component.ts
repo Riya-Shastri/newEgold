@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-branding',
+  selector: "app-branding",
   template: `
     <a class="d-inline-block text-nowrap r-full text-reset" href="/">
-      <img src="./assets/images/matero.png" class="brand-logo align-middle m-2 r-full" alt="logo" />
-      <span class="align-middle f-s-16 f-w-500 m-x-8">MATERO</span>
+      <img
+        src="assets/img/brand/eGold-logo.png"
+        class="brand-logo align-middle m-r-2 full"
+        alt="logo"
+      />
+      <!-- <span class="align-middle f-s-16 f-w-500 m-x-8">eGold</span> -->
     </a>
   `,
   styles: [
     `
       .brand-logo {
-        width: 30px;
-        height: 30px;
+        width: 200px;
+        height: 50px;
       }
     `,
   ],
