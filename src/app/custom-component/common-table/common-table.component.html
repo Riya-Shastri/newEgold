@@ -11,126 +11,116 @@
   </div>
 </div>
 
-<!-- <div>
-  <div class="table-container">
-    <div class="data-grid-options">
-      <mat-checkbox [(ngModel)]="rowSelectable">Row Selectable</mat-checkbox>
-      <mat-checkbox [(ngModel)]="hideRowSelectionCheckbox">Hide checkbox</mat-checkbox>
-      <mat-radio-group [(ngModel)]="multiSelectable">
-        <mat-radio-button [value]="false">Single Selectable</mat-radio-button>
-        <mat-radio-button [value]="true">Multiple Selectable</mat-radio-button>
-      </mat-radio-group>
-      <mat-checkbox [(ngModel)]="showToolbar">Show Toolbar</mat-checkbox>
-      <mat-checkbox [(ngModel)]="columnHideable">Column Hiding</mat-checkbox>
-      <mat-checkbox [(ngModel)]="columnSortable">Column Sorting</mat-checkbox>
-      <mat-checkbox [(ngModel)]="columnPinnable">Column Pinning</mat-checkbox>
-      <mat-checkbox [(ngModel)]="rowHover">Hover</mat-checkbox>
-      <mat-checkbox [(ngModel)]="rowStriped">Striped</mat-checkbox>
-      <mat-checkbox [(ngModel)]="expandable" (change)="enableRowExpandable()">Row Expandable
-      </mat-checkbox>
-      <mat-checkbox [(ngModel)]="showPaginator">Show Paginator</mat-checkbox>
-      <mat-checkbox [(ngModel)]="isLoading">Loading Status</mat-checkbox>
-      <mat-checkbox [(ngModel)]="columnResizable">Column Resizable</mat-checkbox>
-    </div>
-
-    <mtx-grid [data]="dataSource" [columns]="columns" [toolbarTitle]="tableHeader" [loading]="isLoading"
-      [columnResizable]="columnResizable" [multiSelectable]="multiSelectable" [rowSelectable]="rowSelectable"
-      [hideRowSelectionCheckbox]="hideRowSelectionCheckbox" [rowHover]="rowHover" [rowStriped]="rowStriped"
-      [showToolbar]="showToolbar" [columnHideable]="columnHideable" [columnSortable]="columnSortable"
-      [columnPinnable]="columnPinnable" [expandable]="expandable" [expansionTemplate]="expansionTpl"
-      [showPaginator]="showPaginator" [pageOnFront]="showPaginator" [pageSizeOptions]="[5,10,25,50,100]" [pageIndex]="0"
-      [pageSize]="10" (sortChange)="changeSort($event)" (selectionChange)="changeSelect($event)">
-    </mtx-grid>
-
-    <ng-template #expansionTpl let-row>
-      {{row | json }}
-    </ng-template>
-
-
-  </div>
-</div> -->
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort
   (matSortChange)="sortData($event)">
 
   <!-- Checkbox Column -->
   <ng-container matColumnDef="select" sticky>
-    <th mat-header-cell *matHeaderCellDef id="check">
+    <th mat-header-cell *matHeaderCellDef id="check" class="px-0">
       <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
         [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
       </mat-checkbox>
     </th>
-    <td mat-cell *matCellDef="let row  ; let rowIndex = index;">
-      <div class="d-flex align-item-center justify-content-between">
+    <td mat-cell *matCellDef="let row  ; let rowIndex = index;" class="px-0">
 
-        <div>
-          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-          </mat-checkbox>
-        </div>
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
 
-        <div *ngIf="isChildTable" class="child-table">
-          <button mat-button [matMenuTriggerFor]="childTableMenu" #trigger="matMenuTrigger"
-            (click)="setDynamicId(rowIndex)" [disabled]="(selectedChildRowIndex || selectedChildRowIndex === 0 ) &&
-          (selectedChildRowIndex !== rowIndex) ">
-            <mat-icon class="text-primary" *ngIf="(!selectedChildRowIndex && selectedChildRowIndex !== 0) || 
-            (selectedChildRowIndex !== rowIndex)">keyboard_arrow_down</mat-icon>
-            <mat-icon class="text-primary" *ngIf="(selectedChildRowIndex || selectedChildRowIndex === 0 ) &&
-            (selectedChildRowIndex == rowIndex) ">keyboard_arrow_up</mat-icon>
-          </button>
-
-          <mat-menu #childTableMenu="matMenu" class="menu-form-wrapper custom-menu" [hasBackdrop]="false">
-            <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
-
-              <div class="row">
-                <div class="col-12 d-flex align-item-center justify-content-end">
-                  <mat-icon class="text-danger m-2" (click)="trigger.closeMenu(); closeTableMenu()">close</mat-icon>
-                </div>
-              </div>
-
-              <table mat-table [dataSource]="childDataSource" class="mat-elevation-z8 demo-table">
-                <ng-container *ngFor="let column of childTableColumns" [matColumnDef]="column.columnDef">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{column.header}}
-                  </th>
-                  <td mat-cell *matCellDef="let row">
-                    {{column.cell(row)}}
-                  </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="childColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: childColumns;"></tr>
-              </table>
-
-            </div>
-          </mat-menu>
-        </div>
-
-        <div *ngIf="menuItems && menuItems.length > 0 && menuIconForMenu">
-
-          <button mat-icon-button [matMenuTriggerFor]="menu"
-            [disabled]="(selectedChildRowIndex || selectedChildRowIndex === 0 ) ">
-            <mat-icon>{{menuIconForMenu}}</mat-icon>
-          </button>
-
-          <mat-menu #menu="matMenu">
-            <ng-container *ngFor="let option of menuItems ; let menuIndex = index">
-              <button mat-menu-item>
-                <mat-icon>{{option.icon || '' }}</mat-icon>
-                <span>{{option.label || ''}}</span>
-              </button>
-            </ng-container>
-          </mat-menu>
-
-        </div>
-
-      </div>
     </td>
   </ng-container>
 
   <ng-container *ngFor="let column of columns">
 
-    <ng-container *ngIf="column.columnDef != 'action'" [matColumnDef]="column.columnDef">
+    <ng-container *ngIf="column.columnDef == 'addAction'" [matColumnDef]="column.columnDef">
+
+      <th mat-header-cell *matHeaderCellDef id="forAction1" class="px-0"> </th>
+      <td mat-cell *matCellDef="let element let rowIndex=index" class="px-0">
+        <div class="d-flex align-item-center justify-content-start px-0 m-0">
+
+          <div *ngIf="isChildTable">
+
+            <button mat-button [matMenuTriggerFor]="childTableMenu" #trigger="matMenuTrigger"
+              (click)="setDynamicId(rowIndex)" [disabled]="(selectedChildRowIndex || selectedChildRowIndex === 0 ) &&
+  (selectedChildRowIndex !== rowIndex) " class="mt-2">
+              <mat-icon class="text-primary" *ngIf="(!selectedChildRowIndex && selectedChildRowIndex !== 0) || 
+    (selectedChildRowIndex !== rowIndex)">keyboard_arrow_down</mat-icon>
+              <mat-icon class="text-primary" *ngIf="(selectedChildRowIndex || selectedChildRowIndex === 0 ) &&
+    (selectedChildRowIndex == rowIndex) ">keyboard_arrow_up</mat-icon>
+            </button>
+
+            <mat-menu #childTableMenu="matMenu" class="menu-form-wrapper custom-menu" [hasBackdrop]="false">
+              <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+
+                <div class="row">
+                  <div class="col-12 d-flex align-item-center justify-content-end">
+                    <mat-icon class="text-danger m-2" (click)="trigger.closeMenu(); closeTableMenu()">close</mat-icon>
+                  </div>
+                </div>
+
+                <table mat-table [dataSource]="element[childDataSourceKey]" class="mat-elevation-z8 demo-table">
+
+                  <ng-container *ngFor="let cColumn of childTableColumns">
+
+                    <ng-container *ngIf="cColumn.header !== 'Action'" [matColumnDef]="cColumn.columnDef">
+                      <th mat-header-cell *matHeaderCellDef>
+                        {{cColumn.header}}
+                      </th>
+                      <td mat-cell *matCellDef="let cRow">
+                        {{cColumn.cell(cRow)}}
+                      </td>
+                    </ng-container>
+
+                    <ng-container *ngIf="cColumn.header === 'Action' && childActionType && childActionType.length > 0"
+                      [matColumnDef]="cColumn.columnDef">
+                      <th mat-header-cell *matHeaderCellDef>
+                        {{cColumn.header}}
+                      </th>
+                      <td mat-cell *matCellDef="let cRow ; let childIconIndex = index ">
+                        <ng-container *ngFor="let act of childActionType">
+                          <mat-icon class="mx-1 {{act.class}}"
+                            (click)="onChildActionClick(act.name , cRow , childIconIndex )">
+                            {{act.icons}}
+                          </mat-icon>
+                        </ng-container>
+                      </td>
+                    </ng-container>
+
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedChildColumns"></tr>
+                  <tr mat-row *matRowDef="let cRow; columns: displayedChildColumns;"></tr>
+                </table>
+
+              </div>
+            </mat-menu>
+          </div>
+
+          <div *ngIf="menuItems && menuItems.length > 0 && mainIconForMenu">
+
+            <button mat-icon-button [matMenuTriggerFor]="menu"
+              [disabled]="(selectedChildRowIndex || selectedChildRowIndex === 0 ) ">
+              <mat-icon>{{mainIconForMenu}}</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <ng-container *ngFor="let option of menuItems ; let menuIndex = index">
+                <button mat-menu-item>
+                  <mat-icon>{{option.icon || '' }}</mat-icon>
+                  <span>{{option.label || ''}}</span>
+                </button>
+              </ng-container>
+            </mat-menu>
+
+          </div>
+
+        </div>
+
+      </td>
+
+    </ng-container>
+
+    <ng-container *ngIf="column.columnDef != 'action' && column.columnDef !=='addAction'"
+      [matColumnDef]="column.columnDef">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{column.header}}
       </th>
@@ -139,17 +129,17 @@
       </td>
     </ng-container>
 
-    <ng-container *ngIf="column.columnDef == 'action'" [matColumnDef]="column.columnDef" stickyEnd>
+    <ng-container *ngIf="column.columnDef == 'action' && actionType && actionType.length > 0"
+      [matColumnDef]="column.columnDef" stickyEnd>
       <th mat-header-cell *matHeaderCellDef id="forAction">
         {{column.header}}</th>
       <td mat-cell *matCellDef="let element let i=index">
 
-        <mat-icon class="toolbar-button text-primary" *ngIf="actionType['update']"> edit </mat-icon>
-
-        <mat-icon class="toolbar-button ms-3 text-danger" *ngIf="actionType['delete']"
-          (click)="openDeleteDialog(element)">
-          delete
-        </mat-icon>
+        <ng-container *ngFor="let act of actionType">
+          <mat-icon class="mx-2 {{act.class}}" (click)="onActionClick(act.name , element , i )">
+            {{act.icons}}
+          </mat-icon>
+        </ng-container>
 
       </td>
     </ng-container>
@@ -165,7 +155,7 @@
   <div class="col-12">
     <mat-paginator id="MatPaginator" [hidden]="(!dataSource || !dataSource.data || dataSource.data.length == 0) "
       style="background-color: transparent !important;" showFirstLastButtons [length]="totalRecords" #paginator
-      [pageSize]="currentPageSize" [pageSizeOptions]="[10, 20, 30, 40, 50,100]" (page)="onPaginateChange($event)">
+      [pageSize]="currentPageSize" [pageSizeOptions]="[10, 20, 30, 50,100]" (page)="onPaginateChange($event)">
     </mat-paginator>
   </div>
 </div>

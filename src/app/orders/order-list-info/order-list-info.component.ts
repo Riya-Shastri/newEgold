@@ -13,9 +13,9 @@ export class OrderListInfoComponent implements OnInit {
   totalOrderRecords = 100;
 
   actionsTypeArr = [
-    { name: "edit", isShow: true, icons: "cilPencil" },
-    { name: "delete", isShow: false, icons: "cilTrash" },
-    { name: "save", isShow: false, icons: "cilSave" },
+    { name: "edit", icons: "edit", class: 'text-success' },
+    { name: "delete", icons: "delete", class: 'text-danger' },
+    { name: "save", icons: "save", class: 'text-primary' },
   ];
 
   settingOptionArr = [
@@ -32,98 +32,12 @@ export class OrderListInfoComponent implements OnInit {
     { label: "Cancel order", icon: "Outline.svg" },
   ];
 
-  columns: MtxGridColumn[] = [
+  parentColumns = [
     {
-      header: 'Depositor',
-      field: 'Depositor',
-      sortable: true,
-      minWidth: 100,
-      width: '100px',
+      columnDef: 'addAction',
+      header: '',
+      cell: (element: any) => `${element.addAction}`,
     },
-    {
-      header: 'Order ID',
-      field: 'OrderID',
-      sortable: true,
-      disabled: true,
-      minWidth: 100,
-      width: '100px',
-    },
-    {
-      header: 'Source',
-      field: 'Source',
-      minWidth: 100,
-    },
-    {
-      header: 'Time',
-      field: 'Time',
-      minWidth: 100,
-    },
-    {
-      header: 'ShippingType',
-      field: 'ShippingType',
-      minWidth: 100,
-    },
-    // {
-    //   header: 'Action',
-    //   field: 'action',
-    //   minWidth: 140,
-    //   width: '140px',
-    //   pinned: 'right',
-    //   type: 'button',
-    //   buttons: [
-    //     {
-    //       type: 'icon',
-    //       icon: 'edit',
-    //       tooltip: 'Edit',
-    //       click: (record: any) => this.editAction(record),
-    //     },
-    //     {
-    //       type: 'icon',
-    //       color: 'warn',
-    //       icon: 'delete',
-    //       tooltip: 'Delete',
-    //       click: (record: any) => this.deleteAction(record),
-    //     },
-    //   ],
-    // },
-  ];
-
-  dataSource = [
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      Action: ''
-    },
-  ]
-
-  columns1 = [
     {
       columnDef: 'Depositor',
       header: 'Depositor',
@@ -149,14 +63,14 @@ export class OrderListInfoComponent implements OnInit {
       header: 'ShippingType',
       cell: (element: any) => `${element.ShippingType}`,
     },
-    // {
-    //   columnDef: 'action',
-    //   header: 'Action',
-    //   cell: (element: any) => `${element.Action}`,
-    // }
+    {
+      columnDef: 'action',
+      header: 'Action',
+      cell: (element: any) => `${element.Action}`,
+    }
   ];
 
-  dataSource1 = [
+  parentDataSource = [
     {
       Depositor: 'Hydrogen',
       OrderID: '1607926887075',
@@ -558,6 +472,38 @@ export class OrderListInfoComponent implements OnInit {
       Action: ''
     },
   ]
+
+
+  childTableColumns = [
+    {
+      columnDef: 'sku',
+      header: 'sku',
+      cell: (element: any) => `${element.sku}`,
+    },
+    {
+      columnDef: 'productName',
+      header: 'Product Name',
+      cell: (element: any) => `${element.productName}`,
+    },
+    {
+      columnDef: 'quantity',
+      header: 'Quantity',
+      cell: (element: any) => `${element.quantity}`,
+    },
+    {
+      columnDef: 'action',
+      header: 'Action',
+      cell: (element: any) => `${element.action}`,
+    }
+  ];
+
+  childActionTypeArr = [
+    { name: "edit", icons: "edit", class: 'text-success' },
+    { name: "delete", icons: "delete", class: 'text-danger' },
+    { name: "save", icons: "save", class: 'text-primary' },
+  ];
+
+  childDataSourceKey = "product";
 
   constructor() { }
 
@@ -586,4 +532,5 @@ export class OrderListInfoComponent implements OnInit {
 
     }
   }
+
 }

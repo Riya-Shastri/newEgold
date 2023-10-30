@@ -1,4 +1,3 @@
-import { filter } from 'rxjs/operators';
 import { SelectionModel } from "@angular/cdk/collections";
 import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from "@angular/core";
 import {
@@ -10,9 +9,8 @@ import {
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, MatSortable } from "@angular/material/sort";
-import { MatTableDataSource, MatTableModule } from "@angular/material/table";
+import { MatTableDataSource } from "@angular/material/table";
 import { AlertDialogBoxComponent } from "../alert-dialog-box/alert-dialog-box.component";
-import { CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "app-common-table",
@@ -24,6 +22,7 @@ export class CommonTableComponent {
 
   searchForm: FormGroup;
   displayedColumns: any = [];
+  displayedChildColumns: any = [];
   pageIndex: any;
   pageLength: any;
   currentPageSize: any;
@@ -34,8 +33,12 @@ export class CommonTableComponent {
   @Input() totalRecords: any;
   @Input() actionType: any;
   @Input() menuItems: any;
-  @Input() menuIconForMenu: any;
+  @Input() mainIconForMenu: any;
+
   @Input() isChildTable: any;
+  @Input() childActionType: any;
+  @Input() childDataSourceKey: any;
+  @Input() childTableColumns: any;
 
   @Output() emitPagesValue: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
@@ -49,28 +52,6 @@ export class CommonTableComponent {
 
   selection = new SelectionModel<any>(true, []);
 
-  childTableColumns = [
-    {
-      columnDef: 'position',
-      header: 'No.',
-      cell: (element: any) => `${element.position}`,
-    },
-    {
-      columnDef: 'name',
-      header: 'Name',
-      cell: (element: any) => `${element.name}`,
-    },
-    {
-      columnDef: 'weight',
-      header: 'Weight',
-      cell: (element: any) => `${element.weight}`,
-    },
-    {
-      columnDef: 'symbol',
-      header: 'Symbol',
-      cell: (element: any) => `${element.symbol}`,
-    },
-  ];
 
   childDataSource = [
     { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
@@ -85,7 +66,7 @@ export class CommonTableComponent {
     { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
   ];
 
-  childColumns = this.childTableColumns.map(c => c.columnDef);
+
   selectedChildRowIndex = null;
 
   constructor(
@@ -95,7 +76,12 @@ export class CommonTableComponent {
 
   ngOnInit(): void {
     this.initialForm();
-    this.displayedColumns = this.columns.map((c: any) => c.columnDef);
+    if (this.columns) {
+      this.displayedColumns = this.columns.map((c: any) => c.columnDef);
+    }
+    if (this.childTableColumns) {
+      this.displayedChildColumns = this.childTableColumns.map((c: any) => c.columnDef);
+    }
     this.displayedColumns.unshift('select');
     this.dataSource = new MatTableDataSource<any>(this.dataSource);
   }
@@ -176,6 +162,24 @@ export class CommonTableComponent {
     this.dataSort.emit(value);
   }
 
+  onActionClick(actionType: any, rowData: any, index: any) {
+    console.log("actionType..", actionType);
+    console.log("rowData..", rowData);
+    console.log("index..", index);
+    if (actionType == 'delete') {
+      this.openDeleteDialog(rowData)
+    }
+  }
+
+  onChildActionClick(actionType: any, rowData: any, index: any) {
+    console.log("actionType..", actionType);
+    console.log("rowData..", rowData);
+    console.log("index..", index);
+    if (actionType == 'delete') {
+      this.openDeleteDialog(rowData)
+    }
+  }
+
   openDeleteDialog(detail: any) {
     const deleteDialog = this.dialog.open(AlertDialogBoxComponent, {
       width: '400px',
@@ -204,59 +208,4 @@ export class CommonTableComponent {
     this.selectedChildRowIndex = null;
   }
 
-  // ==================== CODE FOR DATAGRIDE START ========================
-
-  // @Input() dataSource: any = [];
-  // @Input() columns: MtxGridColumn[] = [];
-  // @Input() tableHeader: any = '';
-  // isLoading = true;
-  // columnResizable = true;
-  // multiSelectable = true;
-  // rowSelectable = true;
-  // hideRowSelectionCheckbox = false;
-  // rowHover = true;
-  // rowStriped = false;
-  // showToolbar = true;
-  // columnHideable = true;
-  // columnSortable = true;
-  // columnPinnable = true;
-  // showPaginator = true;
-  // expandable = true;
-
-  // ngOnInit(): void {
-  //   this.initialForm();
-  //   if (this.dataSource) {
-  //     this.isLoading = false;
-  //   }
-  // }
-
-  // initialForm() {
-  //   this.searchForm = this.fb.group({
-  //     searchValue: new FormControl("", [Validators.required]),
-  //   });
-  // }
-
-  // changeSelect(e: any) {
-  //   console.log(e);
-  // }
-
-  // changeSort(e: any) {
-  //   console.log(e);
-  // }
-
-  // enableRowExpandable() {
-  //   this.columns[0].showExpand = this.expandable;
-  // }
-
-  // //Format Any Table Data
-  // updateCell() {
-  //   this.dataSource = this.dataSource.map((item: any) => {
-  //     item.weight = Math.round(Math.random() * 1000) / 100;
-  //     return item;
-  //   });
-  // }
-
-  // updateList() {
-  //   this.dataSource = this.dataSource.splice(-1).concat(this.dataSource);
-  // }
 }
