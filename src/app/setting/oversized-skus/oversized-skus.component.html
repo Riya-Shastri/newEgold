@@ -25,9 +25,9 @@
                                     <ng-container *ngFor="let item of tableData.value ; let i = index">
                                         <ng-container [formGroupName]="i">
                                             <tr>
-                                                <th scope="row">
+                                                <td>
                                                     {{item.title}}
-                                                </th>
+                                                </td>
                                                 <td>
                                                     <input type="number" placeholder="Value" sizing="sm"
                                                         class="form-control w-100" formControlName="Width"

@@ -62,8 +62,8 @@
       "icon": "giftIcon.png",
       "children": [
         {
-          "route": "list-info",
-          "name": "list-info",
+          "route": "order-list-info",
+          "name": "order-list-info",
           "type": "link"
         },
         {
