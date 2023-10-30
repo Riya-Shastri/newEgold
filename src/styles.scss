@@ -11,11 +11,17 @@
 
 // @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "~bootstrap/dist/css/bootstrap.min.css";
-// override mat-menu-content padding
 
-.mat-mdc-menu-panel {
+.custom-menu.mat-mdc-menu-panel {
   width: calc(100vw - 400px) !important;
   max-width: calc(100vw - 400px) !important;
-  height: calc(100vw - 1150px) !important;
-  max-height: calc(100vw - 1150px) !important;
+  height: calc(100vw - 1160px) !important;
+  max-height: calc(100vw - 1160px) !important;
 }
+
+// ::ng-deep .child-table .mat-mdc-menu-panel {
+//   width: calc(100vw - 400px) !important;
+//   max-width: calc(100vw - 400px) !important;
+//   height: calc(100vw - 1160px) !important;
+//   max-height: calc(100vw - 1160px) !important;
+// }

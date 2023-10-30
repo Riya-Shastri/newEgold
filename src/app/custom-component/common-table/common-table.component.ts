@@ -35,6 +35,7 @@ export class CommonTableComponent {
   @Input() actionType: any;
   @Input() menuItems: any;
   @Input() menuIconForMenu: any;
+  @Input() isChildTable: any;
 
   @Output() emitPagesValue: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
@@ -192,7 +193,7 @@ export class CommonTableComponent {
   }
 
   setDynamicId(index: any) {
-    if (this.selectedChildRowIndex) {
+    if (this.selectedChildRowIndex || this.selectedChildRowIndex == 0) {
       this.selectedChildRowIndex = null;
     } else {
       this.selectedChildRowIndex = index;

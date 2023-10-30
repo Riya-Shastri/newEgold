@@ -7,5 +7,5 @@
 <!-- MATERIAL TABLE -->
 <app-common-table [columns]="columns1" [dataSource]="dataSource1" [defaultShortKey]="{ id: 'Depositor', start: 'desc'}"
     [totalRecords]="totalOrderRecords" [menuIconForMenu]="'settings'" [menuItems]="settingOptionArr"
-    [actionType]="{delete: 'true' , update: 'true'}" (dataSort)="sortChange($event)">
+    [actionType]="{delete: 'true' , update: 'true'}" (dataSort)="sortChange($event)" [isChildTable]="true">
 </app-common-table>

@@ -63,29 +63,29 @@ export class OrderListInfoComponent implements OnInit {
       field: 'ShippingType',
       minWidth: 100,
     },
-    {
-      header: 'Action',
-      field: 'action',
-      minWidth: 140,
-      width: '140px',
-      pinned: 'right',
-      type: 'button',
-      buttons: [
-        {
-          type: 'icon',
-          icon: 'edit',
-          tooltip: 'Edit',
-          click: (record: any) => this.editAction(record),
-        },
-        {
-          type: 'icon',
-          color: 'warn',
-          icon: 'delete',
-          tooltip: 'Delete',
-          click: (record: any) => this.deleteAction(record),
-        },
-      ],
-    },
+    // {
+    //   header: 'Action',
+    //   field: 'action',
+    //   minWidth: 140,
+    //   width: '140px',
+    //   pinned: 'right',
+    //   type: 'button',
+    //   buttons: [
+    //     {
+    //       type: 'icon',
+    //       icon: 'edit',
+    //       tooltip: 'Edit',
+    //       click: (record: any) => this.editAction(record),
+    //     },
+    //     {
+    //       type: 'icon',
+    //       color: 'warn',
+    //       icon: 'delete',
+    //       tooltip: 'Delete',
+    //       click: (record: any) => this.deleteAction(record),
+    //     },
+    //   ],
+    // },
   ];
 
   dataSource = [
@@ -149,11 +149,11 @@ export class OrderListInfoComponent implements OnInit {
       header: 'ShippingType',
       cell: (element: any) => `${element.ShippingType}`,
     },
-    {
-      columnDef: 'action',
-      header: 'Action',
-      cell: (element: any) => `${element.Action}`,
-    }
+    // {
+    //   columnDef: 'action',
+    //   header: 'Action',
+    //   cell: (element: any) => `${element.Action}`,
+    // }
   ];
 
   dataSource1 = [
