@@ -7,15 +7,20 @@ import { CustomComponentModule } from "../custom-component/custom-component.modu
 import { OrdersComponent } from "./orders.component";
 import { OrderListInfoComponent } from "./order-list-info/order-list-info.component";
 import { RouterModule } from "@angular/router";
+import { MaterialModule } from "app/material.module";
 
 @NgModule({
-  declarations: [OrderListInfoComponent, OrdersComponent],
+  declarations: [
+    OrderListInfoComponent,
+    OrdersComponent
+  ],
   imports: [
     CommonModule,
     OrdersRoutingModule,
     CustomComponentModule,
     FormsModule,
     RouterModule,
+    MaterialModule
   ],
   providers: [],
 })

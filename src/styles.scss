@@ -10,3 +10,12 @@
 @import "bootstrap/scss/bootstrap";
 
 // @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+// override mat-menu-content padding
+
+.mat-mdc-menu-panel {
+  width: calc(100vw - 400px) !important;
+  max-width: calc(100vw - 400px) !important;
+  height: calc(100vw - 1150px) !important;
+  max-height: calc(100vw - 1150px) !important;
+}

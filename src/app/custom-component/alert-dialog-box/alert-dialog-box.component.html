@@ -1,0 +1,49 @@
+<div class=" d-flex align-item-center justify-content-end">
+    <mat-icon class="d-flex justify-content-end align-item-center text-danger m-3" (click)="onOkClick()">
+        clear
+    </mat-icon>
+
+</div>
+
+<mat-dialog-content class="mat-typography ">
+    <div class="align-content  w-100">
+
+        <div *ngIf="data.title == 'Error'">
+            <mat-icon class="me-3 align-content text-danger">cancel</mat-icon>
+        </div>
+
+        <div *ngIf="data.title=='Success'" class=" align-content w-100">
+            <mat-icon class="me-3   text-success">check_circle</mat-icon>
+            <div class=" text-dark"><strong>Success</strong></div>
+            <br>
+        </div>
+
+        <div *ngIf="data.title == 'Warning'" class=" align-content w-100">
+            <mat-icon class="me-3  text-warning">warning</mat-icon>
+            <div class="text-dark"><strong>Warning</strong></div>
+            <br>
+        </div>
+
+        <div *ngIf="data.title=='Confirm'" class=" align-content w-100">
+            <mat-icon class="me-3 text-warning ">help</mat-icon>
+            <div class=" text-dark"><strong>Confirm</strong></div>
+            <br>
+        </div>
+    </div>
+
+    <div *ngIf="content" class="align-content text-dark" [innerHTML]="content">
+
+    </div>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="center" *ngIf="(data.type =='Confirm') ">
+    <button mat-raised-button color="warn" class="me-2" mat-dialog-close>Cancel</button>
+    <button type="button" mat-raised-button mat-dialog-close="Yes" cdkFocusInitial color="primary"
+        tabindex="1">OK</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions align="center" *ngIf="data.type == 'Info'" align="end">
+    <button type="button" mat-raised-button color="secondary" mat-dialog-close="OK" cdkFocusInitial
+        tabindex="1">OK</button>
+</mat-dialog-actions>
