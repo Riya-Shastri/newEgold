@@ -4,14 +4,14 @@
       "route": "dashboard",
       "name": "dashboard",
       "type": "link",
-      "icon": "home"
+      "icon": "homeIcon.png"
     },
 
     {
       "route": "setting",
       "name": "settings",
       "type": "sub",
-      "icon": "settings",
+      "icon": "settingIcon.png",
       "children": [
         {
           "route": "general",
@@ -19,18 +19,18 @@
           "type": "link"
         },
         {
-          "route": "sms-notification",
-          "name": "sms-notification",
+          "route": "sms-notifications",
+          "name": "sms-notifications",
           "type": "link"
         },
         {
-          "route": "oversized-sku",
-          "name": "oversized-sku",
+          "route": "oversized-skus",
+          "name": "oversized-skus",
           "type": "link"
         },
         {
-          "route": "depositor",
-          "name": "depositor",
+          "route": "depositors",
+          "name": "depositors",
           "type": "link"
         },
         {
@@ -39,8 +39,8 @@
           "type": "link"
         },
         {
-          "route": "courier-status-mappings",
-          "name": "courier-status-mappings",
+          "route": "couriers-status-mapping",
+          "name": "couriers-status-mapping",
           "type": "link"
         },
         {
@@ -59,7 +59,7 @@
       "route": "orders",
       "name": "orders",
       "type": "sub",
-      "icon": "card_giftcard",
+      "icon": "giftIcon.png",
       "children": [
         {
           "route": "list-info",
@@ -82,13 +82,13 @@
       "route": "products",
       "name": "products",
       "type": "sub",
-      "icon": "dashboard"
+      "icon": "productIcon.png"
     },
     {
       "route": "shoptools",
       "name": "shoptools",
       "type": "sub",
-      "icon": "dashboard"
+      "icon": "shopTool-Icon.png"
     }
   ]
 }

@@ -6,17 +6,29 @@
                     <strong>
                         Depositor:
                     </strong>
-                    <div class="btn-group dropend mx-2">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="../../../../assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt" />
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Text</a></li>
-                            <li><a class="dropdown-item" href="#">Item-1</a></li>
-                            <li><a class="dropdown-item" href="#">Item-2</a></li>
-                            <li><a class="dropdown-item" href="#">Item-3</a></li>
-                        </ul>
+                    <div>
+                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setOpen()">
+                            <!-- arrow_drop_down -->
+                            {{isOpen === true ? 'arrow_drop_up' : 'arrow_drop_down'}}
+                        </mat-icon>
+
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <span>Text</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-1</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-2</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-3</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-4</span>
+                            </button>
+                        </mat-menu>
                     </div>
                 </div>
             </mat-card-header>
@@ -33,7 +45,7 @@
                     <button type="submit" class="btn btn-primary text-white mx-1" disabled>
                         Update
                     </button>
-                    <button type="submit" class="btn btn-danger text-white mx-1">
+                    <button type="submit" class="btn btn-danger text-white">
                         Delete
                     </button>
                 </div>

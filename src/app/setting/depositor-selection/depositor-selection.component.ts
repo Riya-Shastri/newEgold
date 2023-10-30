@@ -45,6 +45,13 @@ export class DepositorSelectionComponent implements OnInit {
     },
   ];
 
+  isOpen: any = false;
+
   constructor() {}
   ngOnInit(): void {}
+
+  setOpen() {
+    console.log("Call event...");
+    this.isOpen = !this.isOpen;
+  }
 }

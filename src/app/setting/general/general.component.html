@@ -1,43 +1,38 @@
 <div>
   <div class="col-12">
     <mat-card class="mb-4">
-
-      <mat-card-header>
+      <mat-card-header class="mb-2">
         <strong>
-          {{ 'SETTING.GENERAL.SETTINGS' | translate }}
+          SETTINGS
         </strong>
       </mat-card-header>
-
       <mat-card-content>
         <form [formGroup]="generalSettings" (ngSubmit)="settingSubmit()">
 
-          <div class="mb-3">
-
+          <div class="row mb-3">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="SDToNDVM">
-                {{ 'SETTING.GENERAL.CHANGE_SD_TO_ND_IF_VM' | translate }}
+                Change SD to ND if VM is constrained
               </label>
             </div>
-
             <div class="col-md-8">
-              <!-- <c-form-check sizing="lg" switch>
-                <input cFormCheckInput checked type="checkbox" formControlName="changeSDtoND" />
-              </c-form-check> -->
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                  formControlName="changeSDtoND">
+              </div>
             </div>
 
           </div>
-
-          <div class="mb-3">
-
+          <div class="row mb-3">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="dimTolerance">
-                {{ 'SETTING.GENERAL.DIM_TOLERANCE_VM' | translate }}
+                DIM tolerance on VM check (%)
                 <span class="text-danger">*</span>
               </label>
             </div>
 
             <div class="col-md-8">
-              <input cFormControl type="number" placeholder="Value" class="form-control" formControlName="dimTolerance"
+              <input type="number" placeholder="Value" class="form-control" formControlName="dimTolerance"
                 [ngClass]="{'is-invalid':generalSettings.controls['dimTolerance'].touched && generalSettings.controls['dimTolerance'].invalid}" />
               <div
                 *ngIf="generalSettings.controls['dimTolerance'].invalid && (generalSettings.controls['dimTolerance'].dirty || generalSettings.controls['dimTolerance'].touched)"
@@ -48,17 +43,16 @@
 
           </div>
 
-          <div class="mb-3">
-
+          <div class="row mb-3">
             <div class="col-md-4">
               <label cLabel class=" col-form-label" for="emailSosna">
-                {{ 'SETTING.GENERAL.EMAIL_SOSNA' | translate }}
+                Email Sosna
                 <span class="text-danger">*</span>
               </label>
             </div>
 
             <div class="col-md-8">
-              <input cFormControl type="text" placeholder="Value" class="form-control" formControlName="emailSosna"
+              <input type="text" placeholder="Value" class="form-control" formControlName="emailSosna"
                 [ngClass]="{'is-invalid':generalSettings.controls['emailSosna'].touched && generalSettings.controls['emailSosna'].invalid}" />
               <div
                 *ngIf="generalSettings.controls['emailSosna'].invalid && (generalSettings.controls['emailSosna'].dirty || generalSettings.controls['emailSosna'].touched)"
@@ -69,17 +63,16 @@
 
           </div>
 
-          <div class="mb-3">
-
+          <div class="row mb-3">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="emailCheetah">
-                {{ 'SETTING.GENERAL.EMAIL_CHEETAH' | translate }}
+                Email Cheetah
                 <span class="text-danger">*</span>
               </label>
             </div>
 
             <div class="col-md-8">
-              <input cFormControl type="text" placeholder="Value" class="form-control" formControlName="emailCheetah"
+              <input type="text" placeholder="Value" class="form-control" formControlName="emailCheetah"
                 [ngClass]="{'is-invalid':generalSettings.controls['emailCheetah'].touched && generalSettings.controls['emailCheetah'].invalid}" />
               <div
                 *ngIf="generalSettings.controls['emailCheetah'].invalid && (generalSettings.controls['emailCheetah'].dirty || generalSettings.controls['emailCheetah'].touched)"
@@ -90,18 +83,16 @@
 
           </div>
 
-          <div class="mb-3">
-
+          <div class="row mb-3">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="emailFlyingCargo">
-                {{ 'SETTING.GENERAL.EMAIL_FLYING_CARGO' | translate }}
+                Email FlyingCargo (FCE & Boxit)
                 <span class="text-danger">*</span>
               </label>
             </div>
 
             <div class="col-md-8">
-              <input cFormControl type="text" placeholder="Value" class="form-control"
-                formControlName="emailFlyingCargo"
+              <input type="text" placeholder="Value" class="form-control" formControlName="emailFlyingCargo"
                 [ngClass]="{'is-invalid':generalSettings.controls['emailFlyingCargo'].touched && generalSettings.controls['emailFlyingCargo'].invalid}" />
               <div
                 *ngIf="generalSettings.controls['emailFlyingCargo'].invalid && (generalSettings.controls['emailFlyingCargo'].dirty || generalSettings.controls['emailFlyingCargo'].touched)"
@@ -112,17 +103,16 @@
 
           </div>
 
-          <div class="mb-3">
-
+          <div class="row mb-3">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="mailKatz">
-                {{ 'SETTING.GENERAL.MAIL_KATZ' | translate }}
+                Mail Katz
                 <span class="text-danger">*</span>
               </label>
             </div>
 
             <div class="col-md-8">
-              <input cFormControl type="text" placeholder="Value" class="form-control" formControlName="mailKatz"
+              <input type="text" placeholder="Value" class="form-control" formControlName="mailKatz"
                 [ngClass]="{'is-invalid':generalSettings.controls['mailKatz'].touched && generalSettings.controls['mailKatz'].invalid}" />
               <div
                 *ngIf="generalSettings.controls['mailKatz'].invalid && (generalSettings.controls['mailKatz'].dirty || generalSettings.controls['mailKatz'].touched)"
@@ -133,18 +123,16 @@
 
           </div>
 
-          <div class="mb-3 form-group">
-
+          <div class="row mb-3 form-group">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="dispatchAlertEmaila">
-                {{ 'SETTING.GENERAL.DISPATCH_MONITOR_ALTER_EMAILS' | translate }}
+                Dispatch monitor alert emails
                 <span class="text-danger">*</span>
               </label>
             </div>
 
             <div class="col-md-8">
-              <input cFormControl type="text" placeholder="Value" class="form-control"
-                formControlName="dispatchAlertEmail"
+              <input type="text" placeholder="Value" class="form-control" formControlName="dispatchAlertEmail"
                 [ngClass]="{'is-invalid':generalSettings.controls['dispatchAlertEmail'].touched && generalSettings.controls['dispatchAlertEmail'].invalid}" />
               <div
                 *ngIf="generalSettings.controls['dispatchAlertEmail'].invalid && (generalSettings.controls['dispatchAlertEmail'].dirty || generalSettings.controls['dispatchAlertEmail'].touched)"
@@ -157,10 +145,10 @@
 
           <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-secondary text-white" routerLink="/">
-              {{ 'COMMON.CANCEL' | translate }}
+              Cancel
             </button>
             <button type="submit" class="btn btn-primary mx-1" [disabled]="generalSettings.invalid">
-              {{ 'COMMON.UPDATE' | translate }}
+              Update
             </button>
           </div>
 
@@ -173,20 +161,18 @@
 <div>
   <div class="col-12">
     <mat-card class="mb-4">
-
       <mat-card-header>
         <strong>
-          {{ 'SETTING.GENERAL.OPERATIONAL_TIME.OPERATIONAL_TIME_FRAMES' | translate }}
+          Operational Time frames
         </strong>
       </mat-card-header>
 
       <mat-card-content>
         <form [formGroup]="generalOTFrames" (ngSubmit)="OTframeSubmit()">
           <div class="mb-3">
-
             <div md="3">
               <label cLabel class="col-form-label" for="operational time">
-                {{ 'SETTING.GENERAL.OPERATIONAL_TIME.ND_TO_SD_CHANGE_TIME_WINDOW' | translate }}
+                ND to SD change time-window
                 <span class="text-danger">*</span>
               </label>
             </div>
@@ -214,10 +200,9 @@
           </div>
 
           <div class="mb-3">
-
             <div md="3">
               <label cLabel class="col-form-label" for="operational time">
-                {{ 'SETTING.GENERAL.OPERATIONAL_TIME.SD_ACCEPT_TIME_OF_DAY' | translate }}
+                SD accept time of day threshold
                 <span class="text-danger">*</span>
               </label>
             </div>
@@ -236,10 +221,10 @@
 
           <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-secondary text-white" routerLink="/">
-              {{ 'COMMON.CANCEL' | translate }}
+              Cancel
             </button>
             <button type="submit" class="btn btn-primary text-white mx-1" [disabled]="!generalOTFrames.valid">
-              {{ 'COMMON.UPDATE' | translate }}
+              Update
             </button>
           </div>
         </form>

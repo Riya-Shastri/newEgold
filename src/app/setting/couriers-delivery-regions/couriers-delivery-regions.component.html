@@ -1,99 +1,105 @@
-<div class="row" ngPreserveWhitespaces>
+<div class="row">
     <div class="col-12">
         <mat-card class="mb-4">
             <mat-card-header>
-                <div class="d-flex flex-row">
-                    <strong>
-                        GLOBAL default couriers
-                    </strong>
-                </div>
+                <strong>
+                    GLOBAL default couriers
+                </strong>
             </mat-card-header>
-            <mat-card-content>
-                <div class="row" class="mb-3">
-                    <div class="col-md-2">
-                        <div>
-                            <label cLabel class="col-form-label" for="SDToNDVM">
-                                Same Day deliveries
-                            </label>
-                        </div>
+            <mat-card-content class="mt-2">
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label class="col-form-label" for="SDToNDVM">
+                            Same Day deliveries
+                        </label>
                     </div>
-                    <div class="col-md-10">
-                        <!-- 
-                        <div #drop1 ngbDropdown #myDropdown="ngbDropdown">
-                            <button class="btn" id="dropdownConfig" ngbDropdownToggle (click)="setIsOpen()">
-                                <img src="assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt" *ngIf="!isopen" />
-                                <img src="assets/img/icons/Right.svg" alt="cilChevronCircleDownAlt" *ngIf="isopen" />
+                    <div class="col-10">
+                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
+                            <!-- arrow_drop_down -->
+                            {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                        </mat-icon>
+
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <span>Text</span>
                             </button>
-                            <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-                                <button ngbDropdownItem>Text</button>
-                                <button ngbDropdownItem>Item-1</button>
-                                <button ngbDropdownItem>Item-2</button>
-                                <button ngbDropdownItem>Item-3</button>
-                                <button ngbDropdownItem>Item-4</button>
-                            </div>
-                        </div> -->
-
+                            <button mat-menu-item>
+                                <span>Item-1</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-2</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-3</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-4</span>
+                            </button>
+                        </mat-menu>
                     </div>
+
                 </div>
-                <div class="row" class="mb-3">
-                    <div class="col-md-2">
-                        <div>
-                            <label cLabel class="col-form-label" for="SDToNDVM">
-                                Next Day deliveries
-                            </label>
-                        </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label class="col-form-label" for="SDToNDVM">
+                            Next Day deliveries
+                        </label>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-10">
+                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
+                            <!-- arrow_drop_down -->
+                            {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                        </mat-icon>
 
-                        <div class="btn-group dropend mx-1" (click)="onOutsideClick($event)">
-                            <!-- <div #drop1 ngbDropdown #myDropdown="ngbDropdown">
-                                <button class="btn" id="dropdownConfig" ngbDropdownToggle (click)="setIsOpen()">
-                                    <img src="assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt"
-                                        *ngIf="!isopen" />
-                                    <img src="assets/img/icons/Right.svg" alt="cilChevronCircleDownAlt"
-                                        *ngIf="isopen" />
-                                </button>
-                                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-                                    <button ngbDropdownItem>Text</button>
-                                    <button ngbDropdownItem>Item-1</button>
-                                    <button ngbDropdownItem>Item-2</button>
-                                    <button ngbDropdownItem>Item-3</button>
-                                    <button ngbDropdownItem>Item-4</button>
-                                </div>
-                            </div> -->
-
-                        </div>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item>
+                                <span>Text</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-1</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-2</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-3</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-4</span>
+                            </button>
+                        </mat-menu>
                     </div>
+
                 </div>
-                <div class="row" class="mb-3">
-                    <div class="col-md-2">
-                        <div>
-                            <label cLabel class="col-form-label" for="SDToNDVM">
-                                Locker deliveries
-                            </label>
-                        </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label class="col-form-label" for="SDToNDVM">
+                            Locker deliveries
+                        </label>
                     </div>
-                    <div class="col-md-10">
-                        <div class="btn-group dropend mx-1">
+                    <div class="col-10">
+                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
+                            <!-- arrow_drop_down -->
+                            {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                        </mat-icon>
 
-                            <!-- <div #drop1 ngbDropdown #myDropdown="ngbDropdown">
-                                <button class="btn" id="dropdownConfig" ngbDropdownToggle (click)="setIsOpen()">
-                                    <img src="assets/img/icons/Left.svg" alt="cilChevronCircleDownAlt"
-                                        *ngIf="!isopen" />
-                                    <img src="assets/img/icons/Right.svg" alt="cilChevronCircleDownAlt"
-                                        *ngIf="isopen" />
-                                </button>
-                                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-                                    <button ngbDropdownItem>Text</button>
-                                    <button ngbDropdownItem>Item-1</button>
-                                    <button ngbDropdownItem>Item-2</button>
-                                    <button ngbDropdownItem>Item-3</button>
-                                    <button ngbDropdownItem>Item-4</button>
-                                </div>
-                            </div> -->
-
-
-                        </div>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <span>Text</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-1</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-2</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-3</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Item-4</span>
+                            </button>
+                        </mat-menu>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -107,6 +113,56 @@
                         Delete
                     </button>
                 </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <mat-card class="mb-4">
+            <mat-card-header>
+                <strong>
+                    Multilevel DropDown
+                </strong>
+            </mat-card-header>
+            <mat-card-content class="mt-2">
+                <p>Example-1</p>
+                <mat-icon class="menu-caret" [matMenuTriggerFor]="animals" (click)="setIsOpen()">
+                    <!-- arrow_drop_down -->
+                    {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                </mat-icon>
+                <mat-menu #animals="matMenu">
+                    <button mat-menu-item>ND</button>
+                    <button mat-menu-item>SD</button>
+                    <button mat-menu-item [matMenuTriggerFor]="invertebrates">Locker</button>
+                </mat-menu>
+
+                <mat-menu #invertebrates="matMenu">
+                    <button mat-menu-item>Locker ID-1</button>
+                    <button mat-menu-item>Locker ID-2</button>
+                    <button mat-menu-item>Locker ID-3</button>
+                    <button mat-menu-item>Locker ID-4</button>
+                </mat-menu>
+
+
+                <br><br>
+                <p>Example-2</p>
+                <mat-icon class="menu-caret" [matMenuTriggerFor]="abc" (click)="setIsOpen()">
+                    <!-- arrow_drop_down -->
+                    {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                </mat-icon>
+                <mat-menu #abc="matMenu">
+                    <button mat-menu-item>TEXT</button>
+                    <button mat-menu-item>Item-1</button>
+                    <button mat-menu-item [matMenuTriggerFor]="ab">Item-2</button>
+                    <button mat-menu-item>Item-3</button>
+                    <button mat-menu-item>Item-4</button>
+                </mat-menu>
+                <mat-menu #ab="matMenu">
+                    <button mat-menu-item>Force Dispatch</button>
+                </mat-menu>
+
             </mat-card-content>
         </mat-card>
     </div>

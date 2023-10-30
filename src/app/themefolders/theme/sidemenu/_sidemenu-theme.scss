@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'sass:map';
-@use '@angular/material' as mat;
+@use "sass:color";
+@use "sass:map";
+@use "@angular/material" as mat;
 
 @mixin theme($theme) {
   $is-dark-theme: map.get($theme, is-dark);
@@ -12,7 +12,10 @@
   .matero-sidemenu {
     > .menu-item {
       > .menu-heading {
-        color: mat.get-color-from-palette($foreground, text);
+        color: #fff;
+        font-weight: 400;
+        line-height: normal;
+        // mat.get-color-from-palette($foreground, text);
 
         &:hover,
         &:focus {
@@ -22,13 +25,21 @@
 
       &.active {
         > .menu-heading {
-          color:
-            if(
-              $is-dark-theme,
-              color.adjust(mat.get-color-from-palette($primary), $lightness: 25%),
-              mat.get-color-from-palette($accent)
-            );
-          background-color: if($is-dark-theme, rgba(mat.get-color-from-palette($primary), .15), transparent);
+          color: #fff;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+
+          // color: if(
+          //   $is-dark-theme,
+          //   color.adjust(mat.get-color-from-palette($primary), $lightness: 25%),
+          //   mat.get-color-from-palette($accent)
+          // );
+          // background-color: if(
+          //   $is-dark-theme,
+          //   rgba(mat.get-color-from-palette($primary), 0.15),
+          //   transparent
+          // );
 
           &:hover,
           &:focus {

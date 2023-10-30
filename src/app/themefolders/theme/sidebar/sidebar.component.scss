@@ -21,13 +21,14 @@
 
   // Colorful
   .matero-header-white & {
-    background-color: white;
+    background-color: #1f263e;
   }
 }
 
 .matero-sidebar-main {
   height: calc(100% - #{variables.$toolbar-height-desktop});
   overflow: auto;
+  background: #1f263e;
 
   @include breakpoints.bp-lt(small) {
     & {
