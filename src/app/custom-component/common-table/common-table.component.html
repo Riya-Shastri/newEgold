@@ -39,7 +39,8 @@
 
           <div *ngIf="isChildTable">
 
-            <button mat-button [matMenuTriggerFor]="childTableMenu" (click)="setDynamicId(rowIndex)" [disabled]="(selectedChildRowIndex || selectedChildRowIndex === 0 ) &&
+            <button mat-button [matMenuTriggerFor]="childTableMenu" (click)="setDynamicId(rowIndex)"
+              #trigger="matMenuTrigger" [disabled]="(selectedChildRowIndex || selectedChildRowIndex === 0 ) &&
   (selectedChildRowIndex !== rowIndex) " class="mt-2">
               <mat-icon class="text-primary" *ngIf="(!selectedChildRowIndex && selectedChildRowIndex !== 0) || 
     (selectedChildRowIndex !== rowIndex)">keyboard_arrow_down</mat-icon>
@@ -56,38 +57,9 @@
                   </div>
                 </div>
 
-                <table mat-table [dataSource]="element[childDataSourceKey]" class="mat-elevation-z8 demo-table">
-
-                  <ng-container *ngFor="let cColumn of childTableColumns">
-
-                    <ng-container *ngIf="cColumn.header !== 'Action'" [matColumnDef]="cColumn.columnDef">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{cColumn.header}}
-                      </th>
-                      <td mat-cell *matCellDef="let cRow">
-                        {{cColumn.cell(cRow)}}
-                      </td>
-                    </ng-container>
-
-                    <ng-container *ngIf="cColumn.header === 'Action' && childActionType && childActionType.length > 0"
-                      [matColumnDef]="cColumn.columnDef">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{cColumn.header}}
-                      </th>
-                      <td mat-cell *matCellDef="let cRow ; let childIconIndex = index ">
-                        <ng-container *ngFor="let act of childActionType">
-                          <mat-icon class="mx-1 {{act.class}}"
-                            (click)="onChildActionClick(act.name , cRow , childIconIndex )">
-                            {{act.icons}}
-                          </mat-icon>
-                        </ng-container>
-                      </td>
-                    </ng-container>
-
-                  </ng-container>
-                  <tr mat-header-row *matHeaderRowDef="displayedChildColumns"></tr>
-                  <tr mat-row *matRowDef="let cRow; columns: displayedChildColumns;"></tr>
-                </table>
+                <app-common-child-table [childDataSource]="element[childDataSourceKey]"
+                  [childColumns]="childTableColumns" [childActionType]="childActionType">
+                </app-common-child-table>
 
               </div>
             </mat-menu>
@@ -140,6 +112,7 @@
         </ng-container>
       </td>
     </ng-container>
+
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

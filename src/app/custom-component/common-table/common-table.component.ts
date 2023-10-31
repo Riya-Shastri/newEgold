@@ -1,6 +1,7 @@
 import { SelectionModel } from "@angular/cdk/collections";
 import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from "@angular/core";
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -29,6 +30,8 @@ export class CommonTableComponent {
   pageLength: any;
   currentPageSize: any;
   selectedChildRowIndex = null;
+  isEdit = false;
+  rowIndex = null;
 
   @Input() columns: any;
   @Input() dataSource: any;
@@ -55,17 +58,18 @@ export class CommonTableComponent {
 
   selection = new SelectionModel<any>(true, []);
 
-  //Test
-  @ViewChild('childTableMenu') childTableMenu: MatMenuModule;
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  finalTableForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
+
     this.initialForm();
+    this.initTableFormGroup();
+
     if (this.columns) {
       this.displayedColumns = this.columns.map((c: any) => c.columnDef);
     }
@@ -76,9 +80,19 @@ export class CommonTableComponent {
   }
 
   initialForm() {
-    this.searchForm = this.fb.group({
+    this.searchForm = this.formBuilder.group({
       searchValue: new FormControl("", [Validators.required]),
     });
+  }
+
+  initTableFormGroup() {
+    this.finalTableForm = this.formBuilder.group({
+      tableData: this.formBuilder.array([])
+    });
+  }
+
+  get tableData(): FormArray {
+    return this.finalTableForm.get('tableData') as FormArray;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -151,12 +165,21 @@ export class CommonTableComponent {
   }
 
   onActionClick(actionType: any, rowData: any, index: any) {
+
     console.log("actionType..", actionType);
     console.log("rowData..", rowData);
     console.log("index..", index);
+
+    this.rowIndex = index;
+
     if (actionType == 'delete') {
       this.openDeleteDialog(rowData)
     }
+
+    if (actionType == 'edit') {
+      this.isEdit = true;
+    }
+
   }
 
   onChildActionClick(actionType: any, rowData: any, index: any) {
@@ -176,7 +199,7 @@ export class CommonTableComponent {
     });
     deleteDialog.afterClosed().subscribe((result: any) => {
       console.log("result.....", result);
-
+      this.rowIndex = null;
       if (result && result == 'Yes') {
         this.deleteData.emit({ detail: detail });
       }
@@ -190,13 +213,11 @@ export class CommonTableComponent {
     } else {
       this.selectedChildRowIndex = index;
     }
-    console.log("trigger........", this.trigger);
   }
 
   closeTableMenu() {
     this.selectedChildRowIndex = null;
   }
-
 
   tableDrop(event: CdkDragDrop<string[]>) {
     console.log("event....", event);

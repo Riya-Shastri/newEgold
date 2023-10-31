@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" cdkDropList
+    cdkDropListOrientation="horizontal" (cdkDropListDropped)="tableDrop($event)" matSort
+    (matSortChange)="sortData($event)">
+
+    <ng-container *ngFor="let cColumn of childColumns">
+
+        <ng-container *ngIf="cColumn.header !== 'Action'" [matColumnDef]="cColumn.columnDef">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag cdkDragLockAxis="x"
+                cdkDragBoundary="mat-header-row">
+                {{cColumn.header}}
+            </th>
+            <td mat-cell *matCellDef="let cRow">
+                {{cColumn.cell(cRow)}}
+            </td>
+        </ng-container>
+
+        <ng-container *ngIf="cColumn.header === 'Action' && childActionType && childActionType.length > 0"
+            [matColumnDef]="cColumn.columnDef">
+            <th mat-header-cell *matHeaderCellDef cdkDrag cdkDragLockAxis="x" cdkDragBoundary="mat-header-row">
+                {{cColumn.header}}
+            </th>
+            <td mat-cell *matCellDef="let cRow ; let childIconIndex = index ">
+                <ng-container *ngFor="let act of childActionType">
+                    <mat-icon class="mx-1 {{act.class}}"
+                        (click)="onChildActionClick(act.name , cRow , childIconIndex )">
+                        {{act.icons}}
+                    </mat-icon>
+                </ng-container>
+            </td>
+        </ng-container>
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedChildColumns"></tr>
+    <tr mat-row *matRowDef="let cRow; columns: displayedChildColumns;"></tr>
+</table>
