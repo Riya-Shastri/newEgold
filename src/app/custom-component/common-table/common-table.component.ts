@@ -12,6 +12,7 @@ import { MatSort, MatSortable } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { AlertDialogBoxComponent } from "../alert-dialog-box/alert-dialog-box.component";
 import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "app-common-table",
@@ -71,7 +72,6 @@ export class CommonTableComponent {
     if (this.childTableColumns) {
       this.displayedChildColumns = this.childTableColumns.map((c: any) => c.columnDef);
     }
-    this.displayedColumns.unshift('select');
     this.dataSource = new MatTableDataSource<any>(this.dataSource);
   }
 
@@ -195,6 +195,27 @@ export class CommonTableComponent {
 
   closeTableMenu() {
     this.selectedChildRowIndex = null;
+  }
+
+
+  tableDrop(event: CdkDragDrop<string[]>) {
+    console.log("event....", event);
+
+    if ((event.currentIndex == 0 || event.previousIndex == 0) &&
+      this.displayedColumns.includes('select')) {
+      return;
+    }
+    if ((event.currentIndex == 1 || event.previousIndex == 1) &&
+      this.displayedColumns.includes('addAction')) {
+      return;
+    }
+    if ((event.currentIndex == (this.displayedColumns.length - 1) ||
+      (event.previousIndex == (this.displayedColumns.length - 1))) &&
+      this.displayedColumns.includes('action')) {
+      return;
+    }
+
+    moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
 
 }
