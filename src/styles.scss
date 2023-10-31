@@ -15,8 +15,9 @@
 .custom-menu.mat-mdc-menu-panel {
   width: calc(100vw - 400px) !important;
   max-width: calc(100vw - 400px) !important;
-  height: calc(100vw - 1160px) !important;
+  // height: calc(100vw - 1160px) !important;
   max-height: calc(100vw - 1160px) !important;
+  box-shadow: 0px 0px 15px 5px rgba(31, 38, 62, 0.75);
 }
 
 // ::ng-deep .child-table .mat-mdc-menu-panel {

@@ -1,11 +1,6 @@
-<!-- DATA GRID -->
-<!-- <app-common-table [columns]="columns" [dataSource]="dataSource" [tableHeader]="'Orders List'">
-</app-common-table> -->
-
-
-
-<!-- MATERIAL TABLE -->
-<app-common-table [columns]="columns1" [dataSource]="dataSource1" [defaultShortKey]="{ id: 'Depositor', start: 'desc'}"
-    [totalRecords]="totalOrderRecords" [menuIconForMenu]="'settings'" [menuItems]="settingOptionArr"
-    [actionType]="{delete: 'true' , update: 'true'}" (dataSort)="sortChange($event)" [isChildTable]="true">
+<app-common-table [columns]="parentColumns" [dataSource]="parentDataSource"
+    [defaultShortKey]="{ id: 'Depositor', start: 'desc'}" [totalRecords]="totalOrderRecords"
+    [mainIconForMenu]="'settings'" [menuItems]="settingOptionArr" [actionType]="actionsTypeArr"
+    [childActionType]="childActionTypeArr" (dataSort)="sortChange($event)" [isChildTable]="true"
+    [childDataSourceKey]="childDataSourceKey" [childTableColumns]="childTableColumns">
 </app-common-table>
