@@ -21,12 +21,14 @@
       <ng-container *ngIf="column.columnDef == 'select'" sticky matColumnDef="select">
         <th mat-header-cell sticky *matHeaderCellDef id="check" class="px-0" cdkDrag cdkDragLockAxis="x"
           cdkDragBoundary="mat-header-row">
-          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+          <mat-checkbox (change)="$event ? toggleAllRows() : null ; onRowSelected($event)"
+            [checked]="selection.hasValue() && isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
           </mat-checkbox>
         </th>
         <td mat-cell *matCellDef="let row  ; let rowIndex = index;" class="px-0">
-          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          <mat-checkbox (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null ; onRowSelected($event)"
             [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
           </mat-checkbox>
         </td>
@@ -95,7 +97,7 @@
           {{column.header}}
         </th>
         <td mat-cell *matCellDef="let row ;  let i = index;">
-          <div *ngIf="(!rowIndex && rowIndex !== i)">
+          <div *ngIf="(rowIndex !== i)">
             {{column.cell(row)}}
           </div>
           <div *ngIf="rowIndex == i && isEdit">
@@ -140,7 +142,7 @@
           </div>
 
           <div *ngIf="rowIndex == i && isEdit">
-            <mat-icon class="mx-2 text-primary" (click)="onSaveClick()">
+            <mat-icon class="mx-2 text-primary" (click)="onActionClick('save' , element , i )">
               save
             </mat-icon>
           </div>

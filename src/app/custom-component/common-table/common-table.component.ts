@@ -1,17 +1,14 @@
 import { SelectionModel } from "@angular/cdk/collections";
 import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from "@angular/core";
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, MatSortable } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { AlertDialogBoxComponent } from "../alert-dialog-box/alert-dialog-box.component";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
@@ -45,9 +42,8 @@ export class CommonTableComponent {
   @Input() childTableColumns: any;
 
   @Output() emitPagesValue: EventEmitter<any> = new EventEmitter<any>();
-  @Output() deleteData = new EventEmitter<any>();
+  @Output() updatedData = new EventEmitter<any>();
   @Output() dataSort = new EventEmitter<any>();
-
   @Output() SearchValue: EventEmitter<any> = new EventEmitter();
   @Output() selectedRows: EventEmitter<any> = new EventEmitter();
 
@@ -55,7 +51,6 @@ export class CommonTableComponent {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   selection = new SelectionModel<any>(true, []);
-
   editTableForm: FormGroup;
 
   constructor(
@@ -82,7 +77,6 @@ export class CommonTableComponent {
     if (this.dataSource && this.dataSource.data.length > 0) {
       const controls: any = await this.addTableControlsForParent(this.dataSource.data[0]);
       this.editTableForm = this.formBuilder.group({ ...controls });
-      console.log("this.editTableForm....", this.editTableForm);
     }
   }
 
@@ -131,6 +125,7 @@ export class CommonTableComponent {
         this.dataSource = new MatTableDataSource<any>(changes.dataset.currentValue);
       }
     }
+
   }
 
   AfterViewInit() {
@@ -149,7 +144,14 @@ export class CommonTableComponent {
   isAllSelected() {
     const numSelected = this.selection?.selected?.length;
     const numRows = this.dataSource?.data?.length;
+    // this.selectedRows.emit((this.selection && this.selection.selected
+    //   && this.selection.selected.length > 0) ? this.selection.selected : []);
     return numSelected === numRows;
+  }
+
+  onRowSelected(event: any) {
+    this.selectedRows.emit((this.selection && this.selection.selected
+      && this.selection.selected.length > 0) ? this.selection.selected : []);
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -204,6 +206,14 @@ export class CommonTableComponent {
     if (actionType == 'edit') {
       this.isEdit = true;
     }
+
+    if (actionType == 'save') {
+      this.isEdit = false;
+      this.rowIndex = null;
+      console.log("form......", this.editTableForm.value);
+      this.updatedData.emit(this.editTableForm.value);
+
+    }
   }
 
   setDynamicId(index: any) {
@@ -219,7 +229,6 @@ export class CommonTableComponent {
   }
 
   tableDrop(event: CdkDragDrop<string[]>) {
-    console.log("event....", event);
 
     if ((event.currentIndex == 0 || event.previousIndex == 0) &&
       this.displayedColumns.includes('select')) {
@@ -236,12 +245,6 @@ export class CommonTableComponent {
     }
 
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
-  }
-
-  onSaveClick() {
-    this.isEdit = false;
-    this.rowIndex = null;
-    console.log("form......", this.editTableForm.value);
   }
 
 }

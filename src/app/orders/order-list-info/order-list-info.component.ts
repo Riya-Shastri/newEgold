@@ -532,25 +532,34 @@ export class OrderListInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getSearchValue(event: any) {
-    console.log("getSearchValue.....", event);
-  }
-
-  getSelectedRows(event: any) {
-    console.log("getSelectedRows.....", event);
-  }
-
-  deleteAction(deletedData: any) {
-    console.log("deletedData.....", deletedData);
-  }
-
-  editAction(updateData: any) {
+  getEditData(updateData: any) {
     console.log("updateData.....", updateData);
   }
 
   sortChange(event: any) {
     if (event) {
       console.log("sort Data.....", event);
+
+    }
+  }
+
+  getPaginationDetail(event: any) {
+    if (event) {
+      console.log("pagination Data.....", event);
+
+    }
+  }
+
+  getSearchValue(event: any) {
+    if (event) {
+      console.log("Search Data.....", event);
+
+    }
+  }
+
+  getSelectedRows(event: any) {
+    if (event) {
+      console.log("Selected Data.....", event);
 
     }
   }

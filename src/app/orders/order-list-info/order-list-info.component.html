@@ -2,5 +2,7 @@
     [defaultShortKey]="{ id: 'Depositor', start: 'desc'}" [totalRecords]="totalOrderRecords"
     [mainIconForMenu]="'settings'" [menuItems]="settingOptionArr" [actionType]="actionsTypeArr"
     [childActionType]="childActionTypeArr" (dataSort)="sortChange($event)" [isChildTable]="true"
-    [childDataSourceKey]="childDataSourceKey" [childTableColumns]="childTableColumns">
+    [childDataSourceKey]="childDataSourceKey" [childTableColumns]="childTableColumns"
+    (updatedData)="getEditData($event)" (emitPagesValue)="getPaginationDetail($event)"
+    (SearchValue)="getSearchValue($event)" (selectedRows)="getSelectedRows($event)">
 </app-common-table>
