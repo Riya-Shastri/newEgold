@@ -11,59 +11,80 @@ export class OrderListInfoComponent implements OnInit {
 
   actionsTypeArr = [
     { name: "edit", icons: "edit", class: 'text-success' },
-    // { name: "delete", icons: "delete", class: 'text-danger' },
-    // { name: "save", icons: "save", class: 'text-primary' },
+    // { name: "delete", icons: "delete", class: 'text-danger' }
   ];
 
   settingOptionArr = [
     { label: "Dispatch", icon: "Dispatch.svg" },
     { label: "Return Order", icon: "Return.svg" },
-    {
-      label: "Print sticker",
-      icon: "Print sticker.svg",
-    },
-    {
-      label: "Send Latest HJ status",
-      icon: "Status.svg",
-    },
+    { label: "Print sticker", icon: "Print sticker.svg" },
+    { label: "Send Latest HJ status", icon: "Status.svg" },
     { label: "Cancel order", icon: "Outline.svg" },
+  ];
+
+  sourceOptions = [
+    { label: 'Source1', value: 1 },
+    { label: 'Source2', value: 2 },
+    { label: 'Source3', value: 3 },
+    { label: 'Source4', value: 4 },
+    { label: 'Source5', value: 5 },
+    { label: 'Source6', value: 6 },
+    { label: 'Source7', value: 7 },
   ];
 
   parentColumns = [
     {
       columnDef: 'select',
       header: '',
-      cell: (element: any) => `${element.select}`,
+      cell: (element: any) => `${element.select}`
     },
     {
       columnDef: 'addAction',
       header: '',
-      cell: (element: any) => `${element.addAction}`,
+      cell: (element: any) => `${element.addAction}`
     },
     {
       columnDef: 'Depositor',
       header: 'Depositor',
       cell: (element: any) => `${element.Depositor}`,
+      controlType: 'text',
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: 'Depositor'
     },
     {
       columnDef: 'OrderID',
       header: 'Order ID',
       cell: (element: any) => `${element.OrderID}`,
+      controlType: 'text',
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: 'OrderID'
     },
     {
       columnDef: 'Source',
       header: 'Source',
       cell: (element: any) => `${element.Source}`,
+      controlType: 'select',
+      sourceOptions: this.sourceOptions,
+      isControlRequired: true,
+      isValidationPattern: null
     },
     {
       columnDef: 'Time',
       header: 'Time',
       cell: (element: any) => `${element.Time}`,
+      controlType: 'text',
+      isControlRequired: true,
+      isValidationPattern: null
     },
     {
       columnDef: 'ShippingType',
       header: 'ShippingType',
       cell: (element: any) => `${element.ShippingType}`,
+      controlType: 'text',
+      isControlRequired: true,
+      isValidationPattern: null
     },
     {
       columnDef: 'action',
