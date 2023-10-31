@@ -11,6 +11,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, MatSortable } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { AlertDialogBoxComponent } from "../alert-dialog-box/alert-dialog-box.component";
+import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
 
 @Component({
   selector: "app-common-table",
@@ -50,6 +51,10 @@ export class CommonTableComponent {
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  //Test
+  @ViewChild('childTableMenu') childTableMenu: MatMenuModule;
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
   selection = new SelectionModel<any>(true, []);
 
 
@@ -84,6 +89,8 @@ export class CommonTableComponent {
     }
     this.displayedColumns.unshift('select');
     this.dataSource = new MatTableDataSource<any>(this.dataSource);
+
+
   }
 
   initialForm() {
@@ -202,6 +209,7 @@ export class CommonTableComponent {
     } else {
       this.selectedChildRowIndex = index;
     }
+    console.log("trigger........", this.trigger);
   }
 
   closeTableMenu() {
