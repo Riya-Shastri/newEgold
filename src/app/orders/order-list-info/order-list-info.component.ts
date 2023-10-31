@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
-import { MtxGridColumn } from "@ng-matero/extensions/grid";
-import { PeriodicElement } from "app/themefolders/routes/dashboard/dashboard.service";
 
 @Component({
   selector: "app-order-list-info",
@@ -13,8 +10,8 @@ export class OrderListInfoComponent implements OnInit {
 
   actionsTypeArr = [
     { name: "edit", icons: "edit", class: "text-success" },
-    { name: "delete", icons: "delete", class: "text-danger" },
-    { name: "save", icons: "save", class: "text-primary" },
+    // { name: "delete", icons: "delete", class: 'text-danger' },
+    // { name: "save", icons: "save", class: 'text-primary' },
   ];
 
   settingOptionArr = [
@@ -32,6 +29,11 @@ export class OrderListInfoComponent implements OnInit {
   ];
 
   parentColumns = [
+    {
+      columnDef: "select",
+      header: "",
+      cell: (element: any) => `${element.select}`,
+    },
     {
       columnDef: "addAction",
       header: "",
@@ -497,8 +499,8 @@ export class OrderListInfoComponent implements OnInit {
 
   childActionTypeArr = [
     { name: "edit", icons: "edit", class: "text-success" },
-    { name: "delete", icons: "delete", class: "text-danger" },
-    { name: "save", icons: "save", class: "text-primary" },
+    // { name: "delete", icons: "delete", class: 'text-danger' },
+    // { name: "save", icons: "save", class: 'text-primary' },
   ];
 
   childDataSourceKey = "product";
