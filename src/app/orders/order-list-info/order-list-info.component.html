@@ -1,7 +1,8 @@
 <app-common-table [columns]="parentColumns" [dataSource]="parentDataSource"
     [defaultShortKey]="{ id: 'Depositor', start: 'desc'}" [totalRecords]="totalOrderRecords"
     [mainIconForMenu]="'settings'" [menuItems]="settingOptionArr" [actionType]="actionsTypeArr"
-    [childActionType]="childActionTypeArr" (dataSort)="sortChange($event)" [isChildTable]="true"
-    [childDataSourceKey]="childDataSourceKey" [childTableColumns]="childTableColumns"
-    (SearchValue)="getSearchValue($event)">
+    [childActionType]="childActionTypeArr" [isChildTable]="true" [childDataSourceKey]="childDataSourceKey"
+    [childTableColumns]="childTableColumns" (dataSort)="sortChange($event)" (SearchValue)="getSearchValue($event)"
+    (updatedData)="getUpdatedDetail($event)" (emitPagesValue)="getCurrentPaginationValue($event)"
+    (selectedRows)="getSelectedRows($event)" (updatedChildTableData)="updatedChildTableData($event)">
 </app-common-table>

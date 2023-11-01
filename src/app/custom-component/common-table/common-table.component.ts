@@ -24,6 +24,7 @@ import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
   styleUrls: ["./common-table.component.scss"],
 })
 export class CommonTableComponent {
+
   searchForm: FormGroup;
   displayedColumns: any = [];
   pageIndex: any;
@@ -40,17 +41,21 @@ export class CommonTableComponent {
   @Input() actionType: any;
   @Input() menuItems: any;
   @Input() mainIconForMenu: any;
+  @Input() isSearch: any = true;
+  @Input() isPagination: any = true;
 
   @Input() isChildTable: any;
   @Input() childActionType: any;
   @Input() childDataSourceKey: any;
   @Input() childTableColumns: any;
+  @Input() isChildTableComponent: any = false;
 
   @Output() emitPagesValue: EventEmitter<any> = new EventEmitter<any>();
   @Output() updatedData = new EventEmitter<any>();
   @Output() dataSort = new EventEmitter<any>();
   @Output() SearchValue: EventEmitter<any> = new EventEmitter();
   @Output() selectedRows: EventEmitter<any> = new EventEmitter();
+  @Output() updatedChildTableData: EventEmitter<any> = new EventEmitter();
 
   @ViewChild("paginator", { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -58,13 +63,12 @@ export class CommonTableComponent {
   selection = new SelectionModel<any>(true, []);
   editTableForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     if (this.columns) {
       this.displayedColumns = this.columns.map((c: any) => c.columnDef);
     }
-
     this.initialForm();
     this.dataSource = new MatTableDataSource<any>(this.dataSource);
     this.initTableFormGroup();
@@ -150,23 +154,20 @@ export class CommonTableComponent {
 
   getSearchValue() {
     this.SearchValue.emit(this.searchForm.value.searchValue);
-
-    // const val = this.searchForm.value.searchValue;
-    // const temp = this.dataSource.filteredData.filter((data: any) => {
-    //   return data.Depositor.toLowerCase().indexOf(val) !== -1 || !val;
-    // });
-    // console.log(temp);
-
-    // console.log(this.dataSource.filteredData);
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection?.selected?.length;
     const numRows = this.dataSource?.data?.length;
-    // this.selectedRows.emit((this.selection && this.selection.selected
-    //   && this.selection.selected.length > 0) ? this.selection.selected : []);
     return numSelected === numRows;
+  }
+
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+    this.selection.select(...this.dataSource.data);
   }
 
   onRowSelected(event: any) {
@@ -179,23 +180,12 @@ export class CommonTableComponent {
     );
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  toggleAllRows() {
-    if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
-    }
-    this.selection.select(...this.dataSource.data);
-  }
-
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? "deselect" : "select"} all`;
     }
-    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
-      row.position + 1
-    }`;
+    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${row.position + 1
+      }`;
   }
 
   onPaginateChange(value: any) {
@@ -237,7 +227,7 @@ export class CommonTableComponent {
       this.isEdit = false;
       this.rowIndex = null;
       console.log("form......", this.editTableForm.value);
-      this.updatedData.emit(this.editTableForm.value);
+      this.updatedData.emit({ currentIndex: index, newData: this.editTableForm.value });
     }
   }
 
@@ -280,4 +270,9 @@ export class CommonTableComponent {
       event.currentIndex
     );
   }
+
+  editedChildTableResponse(event: any) {
+    this.updatedChildTableData.emit(event);
+  }
+
 }

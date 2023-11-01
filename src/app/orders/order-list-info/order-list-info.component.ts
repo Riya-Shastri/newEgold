@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./order-list-info.component.scss"],
 })
 export class OrderListInfoComponent implements OnInit {
+
   totalOrderRecords = 100;
 
   actionsTypeArr = [
@@ -300,19 +301,37 @@ export class OrderListInfoComponent implements OnInit {
 
   childTableColumns = [
     {
+      columnDef: "select",
+      header: "",
+      cell: (element: any) => `${element.select}`,
+
+    },
+    {
       columnDef: "sku",
       header: "SKU",
       cell: (element: any) => `${element.sku}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "SKU",
     },
     {
       columnDef: "productName",
       header: "Product Name",
       cell: (element: any) => `${element.productName}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Product Name",
     },
     {
       columnDef: "quantity",
       header: "Quantity",
       cell: (element: any) => `${element.quantity}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Quantity",
     },
     {
       columnDef: "action",
@@ -329,9 +348,9 @@ export class OrderListInfoComponent implements OnInit {
 
   childDataSourceKey = "product";
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   getEditData(updateData: any) {
     console.log("updateData.....", updateData);
@@ -360,4 +379,23 @@ export class OrderListInfoComponent implements OnInit {
       console.log("Selected Data.....", event);
     }
   }
+
+  getUpdatedDetail(event: any) {
+    if (event) {
+      console.log("Updated record.....", event);
+    }
+  }
+
+  getCurrentPaginationValue(event: any) {
+    if (event) {
+      console.log("get pagination detail.....", event);
+    }
+  }
+
+  updatedChildTableData(event: any) {
+    if (event) {
+      console.log("get updated child row detail.....", event);
+    }
+  }
+
 }

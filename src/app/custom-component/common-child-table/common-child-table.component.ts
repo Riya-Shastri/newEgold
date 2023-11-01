@@ -1,9 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { AlertDialogBoxComponent } from '../alert-dialog-box/alert-dialog-box.component';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-common-child-table',
@@ -15,69 +11,29 @@ export class CommonChildTableComponent {
   @Input() childDataSource: any;
   @Input() childColumns: any;
   @Input() childActionType: any;
+  @Input() parentTableRowDetail: any;
+  @Input() childDataSourceKey: any;
+  @Output() editedChildTableResponse: any = new EventEmitter();
 
-  displayedChildColumns: any = [];
-  dataSource: any;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private dialog: MatDialog,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (this.childColumns) {
-      this.displayedChildColumns = this.childColumns.map((c: any) => c.columnDef);
-    }
-    this.dataSource = new MatTableDataSource<any>(this.childDataSource);
+    // console.log("childColumns...........", this.childColumns);
+    // console.log("dataSource...........", this.dataSource.data);
   }
 
 
-  onChildActionClick(actionType: any, rowData: any, index: any) {
-    console.log("actionType..", actionType);
-    console.log("rowData..", rowData);
-    console.log("index..", index);
-    if (actionType == 'delete') {
-      this.openDeleteDialog(rowData)
+  getUpdatedDetail(event: any) {
+    if (event) {
+      if (this.parentTableRowDetail && this.parentTableRowDetail[this.childDataSourceKey] &&
+        this.parentTableRowDetail[this.childDataSourceKey].length > 0) {
+        console.log("Updated record.....", event);
+        const finalData = { ...this.parentTableRowDetail };
+        finalData[this.childDataSourceKey][event.currentIndex] = event.newData;
+        this.editedChildTableResponse.emit({ childDetail: event, parentDetail: finalData });
+        // { currentIndex: 1, newData: {… } }
+      }
     }
   }
-
-
-  openDeleteDialog(detail: any) {
-    const deleteDialog = this.dialog.open(AlertDialogBoxComponent, {
-      width: '400px',
-      data: { title: 'Warning', content: "Are you sure, you want to delete?", type: "Confirm" },
-      disableClose: false
-    });
-    deleteDialog.afterClosed().subscribe((result: any) => {
-      console.log("result.....", result);
-      deleteDialog.close();
-    });
-  }
-
-
-  tableDrop(event: CdkDragDrop<string[]>) {
-    console.log("event....", event);
-
-    if ((event.currentIndex == 0 || event.previousIndex == 0) &&
-      this.displayedChildColumns.includes('select')) {
-      return;
-    }
-    if ((event.currentIndex == 1 || event.previousIndex == 1) &&
-      this.displayedChildColumns.includes('addAction')) {
-      return;
-    }
-    if ((event.currentIndex == (this.displayedChildColumns.length - 1) ||
-      (event.previousIndex == (this.displayedChildColumns.length - 1))) &&
-      this.displayedChildColumns.includes('action')) {
-      return;
-    }
-
-    moveItemInArray(this.displayedChildColumns, event.previousIndex, event.currentIndex);
-  }
-
-  sortData(value: any) {
-    console.log("value.....", value);
-  }
-
 
 }
