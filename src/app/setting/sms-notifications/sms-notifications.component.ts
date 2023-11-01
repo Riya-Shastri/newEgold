@@ -12,50 +12,90 @@ import {
   styleUrls: ["./sms-notifications.component.scss"],
 })
 export class SmsNotificationsComponent implements OnInit {
+  totalOrderRecords = 20;
 
-  rowDetails = [
+  columns1 = [
     {
-      id: 1,
-      name: "John",
-      contentTemplate: "A1",
-      baseLength: "Online",
+      columnDef: "Name",
+      header: "Name",
+      cell: (element: any) => `${element.Name}`,
     },
     {
-      id: 2,
-      name: "John",
-      contentTemplate: "A2",
-      baseLength: "Online",
+      columnDef: "ContentTemplate",
+      header: "Content Template",
+      cell: (element: any) => `${element.ContentTemplate}`,
     },
     {
-      id: 3,
-      name: "John",
-      contentTemplate: "A3",
-      baseLength: "Online",
+      columnDef: "BaseLength",
+      header: "Base Length",
+      cell: (element: any) => `${element.BaseLength}`,
     },
     {
-      id: 4,
-      name: "John",
-      contentTemplate: "A4",
-      baseLength: "Online",
-    },
-    {
-      id: 5,
-      name: "John",
-      contentTemplate: "A5",
-      baseLength: "Online",
+      columnDef: "action",
+      header: "",
+      cell: (element: any) => `${element.Action}`,
     },
   ];
-  columnHeader = [
-    { name: "Name", sortable: false },
-    { name: "Content Template", sortable: false },
-    { name: "Base Length", sortable: false },
-    { name: "Action", sortable: false },
+
+  dataSource1 = [
+    {
+      Name: "Hydrogen",
+      ContentTemplate: "1607926887075",
+      BaseLength: "5",
+    },
+    {
+      Name: "Helium",
+      ContentTemplate: "1607926887076",
+      BaseLength: "6",
+    },
+    {
+      Name: "Lithium",
+      ContentTemplate: "1607926887077",
+      BaseLength: "7",
+    },
+    {
+      Name: "Beryllium",
+      ContentTemplate: "1607926887078",
+      BaseLength: "8",
+    },
+    {
+      Name: "Boron",
+      ContentTemplate: "1607926887079",
+      BaseLength: "9",
+    },
+    {
+      Name: "Carbon",
+      ContentTemplate: "1607926887080",
+      BaseLength: "10",
+    },
+    {
+      Name: "Nitrogen",
+      ContentTemplate: "1607926887081",
+      BaseLength: "11",
+    },
+    {
+      Name: "Oxygen",
+      ContentTemplate: "1607926887082",
+      BaseLength: "12",
+    },
+    {
+      Name: "Fluorine",
+      ContentTemplate: "1607926887083",
+      BaseLength: "13",
+    },
+    {
+      Name: "Neon",
+      ContentTemplate: "1607926887084",
+      BaseLength: "14",
+    },
   ];
+
   actionsTypeArr = [
-    { name: "edit", isShow: true, icons: "cilPencil" },
-    // { name: "delete", isShow: false, icons: "cilTrash" },
-    // { name: "save", isShow: false, icons: "cilSave" },
+    { name: "edit", icons: "edit", class: "text-success" },
+    // { name: "delete", icons: "delete", class: "text-danger" },
+    // { name: "save", icons: "save", class: "text-primary" },
   ];
+
   settingOptionArr = [
     { name: "edit", icons: "cilPencil" },
     { name: "delete", icons: "cilPencil" },
@@ -63,7 +103,7 @@ export class SmsNotificationsComponent implements OnInit {
 
   smsNotification: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
     this.initialForm();
   }
@@ -74,5 +114,11 @@ export class SmsNotificationsComponent implements OnInit {
       contentTemplate: new FormControl("", [Validators.required]),
       baseLength: new FormControl("", [Validators.required]),
     });
+  }
+
+  sortChange(event: any) {
+    if (event) {
+      console.log("sort Data.....", event);
+    }
   }
 }

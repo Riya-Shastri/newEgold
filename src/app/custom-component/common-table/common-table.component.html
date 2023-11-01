@@ -78,8 +78,8 @@
               <mat-menu #menu="matMenu">
                 <ng-container *ngFor="let option of menuItems ; let menuIndex = index">
                   <button mat-menu-item>
-                    <mat-icon>{{option.icon || '' }}</mat-icon>
-                    <span>{{option.label || ''}}</span>
+                    <img src="assets/img//icons/{{option.icon}}" />
+                    <span cla>{{option.label || ''}}</span>
                   </button>
                 </ng-container>
               </mat-menu>

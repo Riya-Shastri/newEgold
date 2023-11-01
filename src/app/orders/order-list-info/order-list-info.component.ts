@@ -6,11 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./order-list-info.component.scss"],
 })
 export class OrderListInfoComponent implements OnInit {
-
   totalOrderRecords = 100;
 
   actionsTypeArr = [
-    { name: "edit", icons: "edit", class: 'text-success' },
+    { name: "edit", icons: "edit", class: "text-success" },
     // { name: "delete", icons: "delete", class: 'text-danger' }
   ];
 
@@ -23,183 +22,178 @@ export class OrderListInfoComponent implements OnInit {
   ];
 
   sourceOptions = [
-    { label: 'Source1', value: 1 },
-    { label: 'Source2', value: 2 },
-    { label: 'Source3', value: 3 },
-    { label: 'Source4', value: 4 },
-    { label: 'Source5', value: 5 },
-    { label: 'Source6', value: 6 },
-    { label: 'Source7', value: 7 },
+    { label: "Source1", value: 1 },
+    { label: "Source2", value: 2 },
+    { label: "Source3", value: 3 },
+    { label: "Source4", value: 4 },
+    { label: "Source5", value: 5 },
+    { label: "Source6", value: 6 },
+    { label: "Source7", value: 7 },
   ];
 
   parentColumns = [
     {
-      columnDef: 'select',
-      header: '',
-      cell: (element: any) => `${element.select}`
+      columnDef: "select",
+      header: "",
+      cell: (element: any) => `${element.select}`,
     },
     {
-      columnDef: 'addAction',
-      header: '',
-      cell: (element: any) => `${element.addAction}`
+      columnDef: "addAction",
+      header: "",
+      cell: (element: any) => `${element.addAction}`,
     },
     {
-      columnDef: 'Depositor',
-      header: 'Depositor',
+      columnDef: "Depositor",
+      header: "Depositor",
       cell: (element: any) => `${element.Depositor}`,
-      controlType: 'text',
+      controlType: "text",
       isControlRequired: true,
       isValidationPattern: null,
-      placeholder: 'Depositor'
+      placeholder: "Depositor",
     },
     {
-      columnDef: 'OrderID',
-      header: 'Order ID',
+      columnDef: "OrderID",
+      header: "Order ID",
       cell: (element: any) => `${element.OrderID}`,
-      controlType: 'text',
+      controlType: "text",
       isControlRequired: true,
       isValidationPattern: null,
-      placeholder: 'OrderID'
+      placeholder: "OrderID",
     },
     {
-      columnDef: 'Source',
-      header: 'Source',
+      columnDef: "Source",
+      header: "Source",
       cell: (element: any) => `${element.Source}`,
-      controlType: 'select',
+      controlType: "select",
       sourceOptions: this.sourceOptions,
       isControlRequired: true,
-      isValidationPattern: null
+      isValidationPattern: null,
     },
     {
-      columnDef: 'Time',
-      header: 'Time',
+      columnDef: "Time",
+      header: "Time",
       cell: (element: any) => `${element.Time}`,
-      controlType: 'text',
+      controlType: "text",
       isControlRequired: true,
-      isValidationPattern: null
+      isValidationPattern: null,
     },
     {
-      columnDef: 'ShippingType',
-      header: 'ShippingType',
+      columnDef: "ShippingType",
+      header: "ShippingType",
       cell: (element: any) => `${element.ShippingType}`,
-      controlType: 'text',
+      controlType: "text",
       isControlRequired: true,
-      isValidationPattern: null
+      isValidationPattern: null,
     },
     {
-      columnDef: 'action',
-      header: 'Action',
+      columnDef: "action",
+      header: "Action",
       cell: (element: any) => `${element.Action}`,
-    }
+    },
   ];
 
   parentDataSource = [
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "David Lee",
+      OrderID: "1111222233",
+      Source: "www.electrohub.com",
+      Time: "2023-11-06",
+      ShippingType: "Two-Day",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
+          sku: "24681",
+          productName: "Gadget",
+          quantity: 3,
         },
         {
-          sku: "24680",
-          productName: "Doohickey",
+          sku: "11112",
+          productName: "Widget",
           quantity: 2,
         },
+        {
+          sku: "44444",
+          productName: "Gizmo",
+          quantity: 2,
+        },
+        {
+          sku: "66666",
+          productName: "Doohickey",
+          quantity: 4,
+        },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Sarah Taylor",
+      OrderID: "8888888888",
+      Source: "www.gizmogalore.com",
+      Time: "2023-11-05",
+      ShippingType: "Ground",
       product: [
         {
-          sku: "12345",
+          sku: "11112",
           productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
           quantity: 2,
         },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Michael Brown",
+      OrderID: "4444444444",
+      Source: "www.quickmart.com",
+      Time: "2023-11-04",
+      ShippingType: "Overnight",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
+          sku: "99999",
+          productName: "Contraption",
           quantity: 5,
         },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Eva Williams",
+      OrderID: "7777777777",
+      Source: "www.shopnow.com",
+      Time: "2023-11-03",
+      ShippingType: "Same Day",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
+          sku: "77777",
+          productName: "Thingamajig",
+          quantity: 3,
         },
         {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
+          sku: "88888",
+          productName: "Doodad",
+          quantity: 1,
         },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Bob Johnson",
+      OrderID: "5555555555",
+      Source: "www.testshop.com",
+      Time: "2023-11-02",
+      ShippingType: "Next Day",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
+          sku: "44444",
+          productName: "Gizmo",
           quantity: 2,
         },
+        {
+          sku: "66666",
+          productName: "Doohickey",
+          quantity: 4,
+        },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Hydrogen",
+      OrderID: "1607926887075",
+      Source: "www.matero.com",
+      Time: "010-12345678",
+      ShippingType: "matero",
       product: [
         {
           sku: "12345",
@@ -212,14 +206,14 @@ export class OrderListInfoComponent implements OnInit {
           quantity: 2,
         },
       ],
-      Action: ''
+      Action: "",
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Hydrogen",
+      OrderID: "1607926887075",
+      Source: "www.matero.com",
+      Time: "010-12345678",
+      ShippingType: "matero",
       product: [
         {
           sku: "12345",
@@ -232,54 +226,42 @@ export class OrderListInfoComponent implements OnInit {
           quantity: 2,
         },
       ],
-      Action: ''
+      Action: "",
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Linda Evans",
+      OrderID: "5555666677",
+      Source: "www.technomarket.com",
+      Time: "2023-11-07",
+      ShippingType: "Standard",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
+          sku: "13579",
+          productName: "Device",
           quantity: 2,
         },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Robert Clark",
+      OrderID: "1234000011",
+      Source: "www.gadgetworld.com",
+      Time: "2023-11-08",
+      ShippingType: "Express",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
+          sku: "56789",
+          productName: "Gizmo",
+          quantity: 3,
         },
       ],
-      Action: ''
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Hydrogen",
+      OrderID: "1607926887075",
+      Source: "www.matero.com",
+      Time: "010-12345678",
+      ShippingType: "matero",
       product: [
         {
           sku: "12345",
@@ -292,14 +274,14 @@ export class OrderListInfoComponent implements OnInit {
           quantity: 2,
         },
       ],
-      Action: ''
+      Action: "",
     },
     {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
+      Depositor: "Hydrogen",
+      OrderID: "1607926887075",
+      Source: "www.matero.com",
+      Time: "010-12345678",
+      ShippingType: "matero",
       product: [
         {
           sku: "12345",
@@ -312,225 +294,44 @@ export class OrderListInfoComponent implements OnInit {
           quantity: 2,
         },
       ],
-      Action: ''
+      Action: "",
     },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-    {
-      Depositor: 'Hydrogen',
-      OrderID: '1607926887075',
-      Source: 'www.matero.com',
-      Time: '010-12345678',
-      ShippingType: 'matero',
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: ''
-    },
-  ]
+  ];
 
   childTableColumns = [
     {
-      columnDef: 'sku',
-      header: 'sku',
+      columnDef: "sku",
+      header: "SKU",
       cell: (element: any) => `${element.sku}`,
     },
     {
-      columnDef: 'productName',
-      header: 'Product Name',
+      columnDef: "productName",
+      header: "Product Name",
       cell: (element: any) => `${element.productName}`,
     },
     {
-      columnDef: 'quantity',
-      header: 'Quantity',
+      columnDef: "quantity",
+      header: "Quantity",
       cell: (element: any) => `${element.quantity}`,
     },
     {
-      columnDef: 'action',
-      header: 'Action',
+      columnDef: "action",
+      header: "Action",
       cell: (element: any) => `${element.action}`,
-    }
+    },
   ];
 
   childActionTypeArr = [
-    { name: "edit", icons: "edit", class: 'text-success' },
+    { name: "edit", icons: "edit", class: "text-success" },
     // { name: "delete", icons: "delete", class: 'text-danger' },
     // { name: "save", icons: "save", class: 'text-primary' },
   ];
 
   childDataSourceKey = "product";
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getEditData(updateData: any) {
     console.log("updateData.....", updateData);
@@ -539,29 +340,24 @@ export class OrderListInfoComponent implements OnInit {
   sortChange(event: any) {
     if (event) {
       console.log("sort Data.....", event);
-
     }
   }
 
   getPaginationDetail(event: any) {
     if (event) {
       console.log("pagination Data.....", event);
-
     }
   }
 
   getSearchValue(event: any) {
     if (event) {
       console.log("Search Data.....", event);
-
     }
   }
 
   getSelectedRows(event: any) {
     if (event) {
       console.log("Selected Data.....", event);
-
     }
   }
-
 }

@@ -7,16 +7,17 @@
                 </strong>
             </mat-card-header>
             <mat-card-content class="mt-2">
+
                 <div class="row mb-3">
                     <div class="col-2">
                         <label class="col-form-label" for="SDToNDVM">
                             Same Day deliveries
                         </label>
                     </div>
-                    <div class="col-10">
-                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
+                    <div class="col-10 d-flex align-items-center">
+                        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
                             <!-- arrow_drop_down -->
-                            {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                            {{isopen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
                         </mat-icon>
 
                         <mat-menu #menu="matMenu">
@@ -37,7 +38,6 @@
                             </button>
                         </mat-menu>
                     </div>
-
                 </div>
                 <div class="row mb-3">
                     <div class="col-2">
@@ -45,10 +45,10 @@
                             Next Day deliveries
                         </label>
                     </div>
-                    <div class="col-10">
-                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
+                    <div class="col-10 d-flex align-items-center">
+                        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
                             <!-- arrow_drop_down -->
-                            {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                            {{isopen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
                         </mat-icon>
 
                         <mat-menu #menu="matMenu" xPosition="before">
@@ -77,10 +77,10 @@
                             Locker deliveries
                         </label>
                     </div>
-                    <div class="col-10">
-                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
+                    <div class="col-10 d-flex align-items-center">
+                        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
                             <!-- arrow_drop_down -->
-                            {{isopen === true ? 'arrow_drop_down' : 'arrow_drop_up'}}
+                            {{isopen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
                         </mat-icon>
 
                         <mat-menu #menu="matMenu">
@@ -102,6 +102,7 @@
                         </mat-menu>
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn btn-secondary text-white" routerLink="/">
                         Cancel

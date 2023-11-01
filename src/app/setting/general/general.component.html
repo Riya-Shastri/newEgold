@@ -169,57 +169,55 @@
 
       <mat-card-content>
         <form [formGroup]="generalOTFrames" (ngSubmit)="OTframeSubmit()">
-          <div class="mb-3">
-            <div md="3">
+          <div class="row d-flex align-items-center">
+            <div class="col-md-4">
               <label cLabel class="col-form-label" for="operational time">
                 ND to SD change time-window
                 <span class="text-danger">*</span>
               </label>
             </div>
-
-            <div md="1">
+            <div class="col-md-4 d-flex align-items-center">
               <label cLabel class="col-form-label mt-1" for="startNDSD">
                 Start:
               </label>
-            </div>
+              <input type="number" class="form-control mx-2" placeholder="HH" formControlName="NDtoSDstartHH"
+                [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartHH'].touched && generalOTFrames.controls['NDtoSDstartHH'].invalid}" />:
 
-            <div md="3">
-              <!-- <ngb-timepicker formControlName="NDtoSDstart"></ngb-timepicker> -->
+              <input type="number" class="form-control mx-2" placeholder="MM" formControlName="NDtoSDstartMM"
+                [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartMM'].touched && generalOTFrames.controls['NDtoSDstartMM'].invalid}" />
             </div>
-
-            <div md="1">
+            <div class="col-md-4 d-flex align-items-center">
               <label cLabel class="col-form-label mt-1" for="startNDSD">
                 End:
               </label>
-            </div>
+              <input type="number" class="form-control  mx-2" placeholder="HH" formControlName="NDtoSDendHH"
+                [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDendHH'].touched && generalOTFrames.controls['NDtoSDendHH'].invalid}" />:
 
-            <div md="3">
-              <!-- <ngb-timepicker formControlName="NDtoSDend"></ngb-timepicker> -->
+              <input type="number" class="form-control  mx-2" placeholder="MM" formControlName="NDtoSDendMM"
+                [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDendMM'].touched && generalOTFrames.controls['NDtoSDendMM'].invalid}" />
             </div>
-
           </div>
 
-          <div class="mb-3">
-            <div md="3">
+          <div class="row mt-2 d-flex align-items-center">
+            <div class="col-md-4">
               <label cLabel class="col-form-label" for="operational time">
                 SD accept time of day threshold
                 <span class="text-danger">*</span>
               </label>
             </div>
-
-            <div md="1">
-              <label cLabel class="col-form-label" for="startNDSD">
+            <div class="col-md-4 d-flex align-items-center">
+              <label cLabel class="col-form-label mt-1" for="startNDSD">
                 Start:
               </label>
+              <input type="number" class="form-control mx-2" placeholder="HH" formControlName="SDacceptStartHH"
+                [ngClass]="{'is-invalid':generalOTFrames.controls['SDacceptStartHH'].touched && generalOTFrames.controls['SDacceptStartHH'].invalid}" />:
+              <input type="number" class="form-control mx-2" placeholder="MM" formControlName="SDacceptStartMM"
+                [ngClass]="{'is-invalid':generalOTFrames.controls['SDacceptStartMM'].touched && generalOTFrames.controls['SDacceptStartMM'].invalid}" />
             </div>
-
-            <div md="3">
-              <!-- <ngb-timepicker formControlName="SDacceptStart"></ngb-timepicker> -->
-            </div>
-
           </div>
 
-          <div class="d-flex justify-content-center">
+
+          <div class="d-flex mt-2 justify-content-center">
             <button type="button" class="btn btn-secondary text-white" routerLink="/">
               Cancel
             </button>

@@ -25,9 +25,9 @@
                                     <ng-container *ngFor="let item of tableData.value ; let i = index">
                                         <ng-container [formGroupName]="i">
                                             <tr>
-                                                <th scope="row">
+                                                <td>
                                                     {{item.title}}
-                                                </th>
+                                                </td>
                                                 <td>
                                                     <input type="number" placeholder="Value" sizing="sm"
                                                         class="form-control w-100" formControlName="Width"
@@ -93,17 +93,21 @@
     <div class="col-12">
         <mat-card class="mb-4">
             <mat-card-content>
-                <!-- <app-common-table [datasource]="rowDetails" [tableHeader]="columnHeader" [checkboxSelect]="true"
-                    [subModalOption]="false" [popSubTableData]="false" [action]="false" [subTableaction]="false"
-                    [settingOption]="false" [reorder]="true" [Pagination]="50" [limit]="5"
-                    [searchOption]="false"></app-common-table> -->
+
+                <app-common-table [columns]="columns1" [dataSource]="dataSource1"
+                    [defaultShortKey]="{ id: 'Name', start: 'desc'}" [totalRecords]="totalOrderRecords"
+                    [actionType]="{ update: 'true'}" (dataSort)="sortChange($event)">
+                </app-common-table>
 
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn btn-secondary text-white" routerLink="/">
                         Cancel
                     </button>
-                    <button type="submit" class="btn btn-primary mx-1" disabled>
+                    <button type="submit" class="btn btn-primary text-white mx-1" disabled>
                         Update
+                    </button>
+                    <button type="button" class="btn btn-danger text-white">
+                        Delete
                     </button>
                 </div>
             </mat-card-content>

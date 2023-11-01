@@ -1,5 +1,12 @@
 import { SelectionModel } from "@angular/cdk/collections";
-import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -16,9 +23,7 @@ import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
   templateUrl: "./common-table.component.html",
   styleUrls: ["./common-table.component.scss"],
 })
-
 export class CommonTableComponent {
-
   searchForm: FormGroup;
   displayedColumns: any = [];
   pageIndex: any;
@@ -47,15 +52,13 @@ export class CommonTableComponent {
   @Output() SearchValue: EventEmitter<any> = new EventEmitter();
   @Output() selectedRows: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('paginator', { static: false }) paginator: MatPaginator;
+  @ViewChild("paginator", { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   selection = new SelectionModel<any>(true, []);
   editTableForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     if (this.columns) {
@@ -75,7 +78,9 @@ export class CommonTableComponent {
 
   async initTableFormGroup() {
     if (this.dataSource && this.dataSource.data.length > 0) {
-      const controls: any = await this.addTableControlsForParent(this.dataSource.data[0]);
+      const controls: any = await this.addTableControlsForParent(
+        this.dataSource.data[0]
+      );
       this.editTableForm = this.formBuilder.group({ ...controls });
     }
   }
@@ -84,33 +89,39 @@ export class CommonTableComponent {
     return new Promise((resolve, reject) => {
       let tempObj: any = {};
       for (const key in newControlsObj) {
-
         if (this.displayedColumns.includes(key)) {
-          const columnDetailIndex = this.columns.findIndex((obj: any) => obj.columnDef == key);
+          const columnDetailIndex = this.columns.findIndex(
+            (obj: any) => obj.columnDef == key
+          );
 
           if (columnDetailIndex >= 0) {
             const columnDetail = this.columns[columnDetailIndex];
 
-            if (columnDetail &&
-              columnDetail['isControlRequired'] &&
-              !columnDetail['isValidationPattern']) {
-              tempObj[key] = new FormControl(newControlsObj[key], [Validators.required]);
-            } else if (columnDetail &&
-              !columnDetail['isControlRequired'] &&
-              !columnDetail['isValidationPattern']) {
-              tempObj[key] = new FormControl(newControlsObj[key]);
-            }
-            else if (columnDetail &&
-              columnDetail['isControlRequired'] &&
-              columnDetail['isValidationPattern']) {
+            if (
+              columnDetail &&
+              columnDetail["isControlRequired"] &&
+              !columnDetail["isValidationPattern"]
+            ) {
               tempObj[key] = new FormControl(newControlsObj[key], [
                 Validators.required,
-                Validators.pattern(columnDetail['isValidationPattern'])
+              ]);
+            } else if (
+              columnDetail &&
+              !columnDetail["isControlRequired"] &&
+              !columnDetail["isValidationPattern"]
+            ) {
+              tempObj[key] = new FormControl(newControlsObj[key]);
+            } else if (
+              columnDetail &&
+              columnDetail["isControlRequired"] &&
+              columnDetail["isValidationPattern"]
+            ) {
+              tempObj[key] = new FormControl(newControlsObj[key], [
+                Validators.required,
+                Validators.pattern(columnDetail["isValidationPattern"]),
               ]);
             }
-
           }
-
         } else {
           tempObj[key] = new FormControl(newControlsObj[key]);
         }
@@ -122,15 +133,16 @@ export class CommonTableComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.dataSource) {
       if (changes && changes.dataset && changes.dataset.currentValue) {
-        this.dataSource = new MatTableDataSource<any>(changes.dataset.currentValue);
+        this.dataSource = new MatTableDataSource<any>(
+          changes.dataset.currentValue
+        );
       }
     }
-
   }
 
   AfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.sort.sort((this.defaultShortKey) as MatSortable);
+    this.sort.sort(this.defaultShortKey as MatSortable);
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
     this.dataSource.sort = this.sort;
     this.removePaginatorTooltip();
@@ -138,6 +150,14 @@ export class CommonTableComponent {
 
   getSearchValue() {
     this.SearchValue.emit(this.searchForm.value.searchValue);
+
+    // const val = this.searchForm.value.searchValue;
+    // const temp = this.dataSource.filteredData.filter((data: any) => {
+    //   return data.Depositor.toLowerCase().indexOf(val) !== -1 || !val;
+    // });
+    // console.log(temp);
+
+    // console.log(this.dataSource.filteredData);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -150,8 +170,13 @@ export class CommonTableComponent {
   }
 
   onRowSelected(event: any) {
-    this.selectedRows.emit((this.selection && this.selection.selected
-      && this.selection.selected.length > 0) ? this.selection.selected : []);
+    this.selectedRows.emit(
+      this.selection &&
+        this.selection.selected &&
+        this.selection.selected.length > 0
+        ? this.selection.selected
+        : []
+    );
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -166,9 +191,11 @@ export class CommonTableComponent {
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: any): string {
     if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+      return `${this.isAllSelected() ? "deselect" : "select"} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
+      row.position + 1
+    }`;
   }
 
   onPaginateChange(value: any) {
@@ -184,11 +211,11 @@ export class CommonTableComponent {
   removePaginatorTooltip() {
     //To remove tooltip on paginator
     if (this.paginator) {
-      const paginatorIntl = this.paginator['_intl'];
-      paginatorIntl.nextPageLabel = '';
-      paginatorIntl.previousPageLabel = '';
-      paginatorIntl.lastPageLabel = '';
-      paginatorIntl.firstPageLabel = '';
+      const paginatorIntl = this.paginator["_intl"];
+      paginatorIntl.nextPageLabel = "";
+      paginatorIntl.previousPageLabel = "";
+      paginatorIntl.lastPageLabel = "";
+      paginatorIntl.firstPageLabel = "";
     }
   }
 
@@ -197,22 +224,20 @@ export class CommonTableComponent {
   }
 
   onActionClick(actionType: any, rowData: any, index: any) {
-
     console.log("actionType..", actionType);
     console.log("rowData..", rowData);
     console.log("index..", index);
 
     this.rowIndex = index;
-    if (actionType == 'edit') {
+    if (actionType == "edit") {
       this.isEdit = true;
     }
 
-    if (actionType == 'save') {
+    if (actionType == "save") {
       this.isEdit = false;
       this.rowIndex = null;
       console.log("form......", this.editTableForm.value);
       this.updatedData.emit(this.editTableForm.value);
-
     }
   }
 
@@ -229,22 +254,30 @@ export class CommonTableComponent {
   }
 
   tableDrop(event: CdkDragDrop<string[]>) {
+    if (
+      (event.currentIndex == 0 || event.previousIndex == 0) &&
+      this.displayedColumns.includes("select")
+    ) {
+      return;
+    }
+    if (
+      (event.currentIndex == 1 || event.previousIndex == 1) &&
+      this.displayedColumns.includes("addAction")
+    ) {
+      return;
+    }
+    if (
+      (event.currentIndex == this.displayedColumns.length - 1 ||
+        event.previousIndex == this.displayedColumns.length - 1) &&
+      this.displayedColumns.includes("action")
+    ) {
+      return;
+    }
 
-    if ((event.currentIndex == 0 || event.previousIndex == 0) &&
-      this.displayedColumns.includes('select')) {
-      return;
-    }
-    if ((event.currentIndex == 1 || event.previousIndex == 1) &&
-      this.displayedColumns.includes('addAction')) {
-      return;
-    }
-    if ((event.currentIndex == (this.displayedColumns.length - 1) ||
-      (event.previousIndex == (this.displayedColumns.length - 1))) &&
-      this.displayedColumns.includes('action')) {
-      return;
-    }
-
-    moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
+    moveItemInArray(
+      this.displayedColumns,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
-
 }

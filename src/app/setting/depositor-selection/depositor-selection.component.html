@@ -1,55 +1,56 @@
-<div ngPreserveWhitespaces>
-    <div class="col-12">
-        <mat-card class="mb-4">
-            <mat-card-header>
-                <div class="d-flex flex-row">
-                    <strong>
-                        Depositor:
-                    </strong>
-                    <div>
-                        <mat-icon class="menu-caret" [matMenuTriggerFor]="menu" (click)="setOpen()">
-                            <!-- arrow_drop_down -->
-                            {{isOpen === true ? 'arrow_drop_up' : 'arrow_drop_down'}}
-                        </mat-icon>
+<div class="col-12">
+    <mat-card class="mb-4">
+        <mat-card-header>
+            <div class="d-flex flex-row">
+                <strong>
+                    Depositor:
+                </strong>
+                <div>
+                    <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setOpen()">
+                        {{isOpen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
+                    </mat-icon>
+                    <!-- <mat-icon class="text-primary">keyboard_arrow_down
+                    </mat-icon> -->
 
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <span>Text</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-1</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-2</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-3</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-4</span>
-                            </button>
-                        </mat-menu>
-                    </div>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <span>Text</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Item-1</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Item-2</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Item-3</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Item-4</span>
+                        </button>
+                    </mat-menu>
                 </div>
-            </mat-card-header>
-            <mat-card-content>
-                <!-- <app-common-table [datasource]="rowDetails" [tableHeader]="columnHeader" [checkboxSelect]="true"
-                    [subModalOption]="false" [popSubTableData]="false" [action]="false" [subTableaction]="false"
-                    [settingOption]="false" [reorder]="true" [Pagination]="50" [limit]="5"
-                    [searchOption]="false"></app-common-table> -->
+            </div>
+        </mat-card-header>
+        <mat-card-content class="mt-4">
+            <app-common-table [columns]="columns1" [dataSource]="dataSource1"
+                [defaultShortKey]="{ id: 'Name', start: 'desc'}" [totalRecords]="totalOrderRecords"
+                [actionType]="{ update: 'true'}" (dataSort)="sortChange($event)">
+            </app-common-table>
 
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-secondary text-white" routerLink="/">
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn btn-primary text-white mx-1" disabled>
-                        Update
-                    </button>
-                    <button type="submit" class="btn btn-danger text-white">
-                        Delete
-                    </button>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary text-white" routerLink="/">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary text-white mx-1" disabled>
+                    Update
+                </button>
+                <button type="submit" class="btn btn-danger text-white">
+                    Delete
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+
 </div>

@@ -6,7 +6,6 @@ import {
   Validators,
 } from "@angular/forms";
 
-
 @Component({
   selector: "app-general",
   templateUrl: "./general.component.html",
@@ -22,9 +21,7 @@ export class GeneralComponent implements OnInit {
   //   minute: null,
   //   second: 0,
   // };
-  constructor(private fb: FormBuilder) {
-
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.intialSettingsForm();
@@ -45,9 +42,37 @@ export class GeneralComponent implements OnInit {
 
   intialOTFrames() {
     this.generalOTFrames = this.fb.group({
-      NDtoSDstart: new FormControl('', [Validators.required]),
-      NDtoSDend: new FormControl('', [Validators.required]),
-      SDacceptStart: new FormControl('', [Validators.required]),
+      NDtoSDstartHH: new FormControl("", [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(23),
+      ]),
+      NDtoSDstartMM: new FormControl("", [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(59),
+      ]),
+      NDtoSDendHH: new FormControl("", [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(59),
+      ]),
+      NDtoSDendMM: new FormControl("", [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(59),
+      ]),
+      SDacceptStartHH: new FormControl("", [
+        Validators.required,
+        Validators.required,
+        Validators.min(0),
+        Validators.max(59),
+      ]),
+      SDacceptStartMM: new FormControl("", [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(59),
+      ]),
     });
   }
 

@@ -88,7 +88,7 @@
     "settings.drivers": "Drivers",
     "settings.user-management": "Username Management",
     "orders": "Orders",
-    "orders.list-info": "Order list & info",
+    "orders.order-list-info": "Order list & info",
     "orders.manual-load": "Manual load",
     "orders.bulk-load": "Bulk load",
     "products": "Products",

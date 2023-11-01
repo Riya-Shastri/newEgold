@@ -6,81 +6,122 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./user-management.component.scss"],
 })
 export class UserManagementComponent implements OnInit {
-  columnHeader = [
-    { name: "User ID", sortable: false },
-    { name: "Name", sortable: false },
-    { name: "Depositor", sortable: false },
-    { name: "Email", sortable: false },
-    { name: "Role", sortable: false },
-    { name: "Action", sortable: false },
+  totalOrderRecords = 20;
+
+  columns1 = [
+    {
+      columnDef: "UserID",
+      header: "User ID",
+      cell: (element: any) => `${element.UserID}`,
+    },
+    {
+      columnDef: "Name",
+      header: "Name",
+      cell: (element: any) => `${element.Name}`,
+    },
+    {
+      columnDef: "Depositor",
+      header: "Depositor",
+      cell: (element: any) => `${element.Depositor}`,
+    },
+    {
+      columnDef: "Email",
+      header: "Email",
+      cell: (element: any) => `${element.Email}`,
+    },
+    {
+      columnDef: "Role",
+      header: "Role",
+      cell: (element: any) => `${element.Role}`,
+    },
+    // {
+    //   columnDef: "Action",
+    //   header: "Action",
+    //   cell: (element: any) => `${element.Action}`,
+    // },
   ];
-  rowDetails = [
+
+  dataSource1 = [
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "1",
+      Name: "Widget",
+      Depositor: "10",
+      Email: "widget@example.com",
+      Role: "Admin",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "2",
+      Name: "Gadget",
+      Depositor: "20",
+      Email: "gadget@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "3",
+      Name: "Doodad",
+      Depositor: "30",
+      Email: "doodad@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "4",
+      Name: "Contraption",
+      Depositor: "40",
+      Email: "contraption@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "5",
+      Name: "Thingamajig",
+      Depositor: "50",
+      Email: "thingamajig@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "6",
+      Name: "Whatchamacallit",
+      Depositor: "60",
+      Email: "whatchamacallit@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "7",
+      Name: "Doohickey",
+      Depositor: "70",
+      Email: "doohickey@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "8",
+      Name: "Gizmo",
+      Depositor: "80",
+      Email: "gizmo@example.com",
+      Role: "User",
     },
     {
-      userId: "1",
-      name: "Widget",
-      depositor: "10",
-      email: "Widget",
-      role: "10",
+      UserID: "9",
+      Name: "Wrench",
+      Depositor: "90",
+      Email: "wrench@example.com",
+      Role: "User",
+    },
+    {
+      UserID: "10",
+      Name: "Hammer",
+      Depositor: "100",
+      Email: "hammer@example.com",
+      Role: "User",
     },
   ];
+
   actionsTypeArr = [{ name: "edit", isShow: true, icons: "cilPencil" }];
 
   constructor() {}
   ngOnInit(): void {}
+
+  sortChange(event: any) {
+    if (event) {
+      console.log("sort Data.....", event);
+    }
+  }
 }
