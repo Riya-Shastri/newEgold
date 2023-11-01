@@ -13,12 +13,9 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, MatSortable } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { AlertDialogBoxComponent } from "../alert-dialog-box/alert-dialog-box.component";
-import { MatMenuModule, MatMenuTrigger } from "@angular/material/menu";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
@@ -29,11 +26,12 @@ import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 export class CommonTableComponent {
   searchForm: FormGroup;
   displayedColumns: any = [];
-  displayedChildColumns: any = [];
   pageIndex: any;
   pageLength: any;
   currentPageSize: any;
   selectedChildRowIndex = null;
+  isEdit = false;
+  rowIndex = null;
 
   @Input() columns: any;
   @Input() dataSource: any;
@@ -49,9 +47,8 @@ export class CommonTableComponent {
   @Input() childTableColumns: any;
 
   @Output() emitPagesValue: EventEmitter<any> = new EventEmitter<any>();
-  @Output() deleteData = new EventEmitter<any>();
+  @Output() updatedData = new EventEmitter<any>();
   @Output() dataSort = new EventEmitter<any>();
-
   @Output() SearchValue: EventEmitter<any> = new EventEmitter();
   @Output() selectedRows: EventEmitter<any> = new EventEmitter();
 
@@ -59,32 +56,77 @@ export class CommonTableComponent {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   selection = new SelectionModel<any>(true, []);
+  editTableForm: FormGroup;
 
-  //Test
-  @ViewChild("childTableMenu") childTableMenu: MatMenuModule;
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
-
-  constructor(
-    private fb: FormBuilder,
-    private dialog: MatDialog
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.initialForm();
     if (this.columns) {
       this.displayedColumns = this.columns.map((c: any) => c.columnDef);
     }
-    if (this.childTableColumns) {
-      this.displayedChildColumns = this.childTableColumns.map(
-        (c: any) => c.columnDef
-      );
-    }
+
+    this.initialForm();
     this.dataSource = new MatTableDataSource<any>(this.dataSource);
+    this.initTableFormGroup();
   }
 
   initialForm() {
-    this.searchForm = this.fb.group({
+    this.searchForm = this.formBuilder.group({
       searchValue: new FormControl("", [Validators.required]),
+    });
+  }
+
+  async initTableFormGroup() {
+    if (this.dataSource && this.dataSource.data.length > 0) {
+      const controls: any = await this.addTableControlsForParent(
+        this.dataSource.data[0]
+      );
+      this.editTableForm = this.formBuilder.group({ ...controls });
+    }
+  }
+
+  addTableControlsForParent(newControlsObj: any) {
+    return new Promise((resolve, reject) => {
+      let tempObj: any = {};
+      for (const key in newControlsObj) {
+        if (this.displayedColumns.includes(key)) {
+          const columnDetailIndex = this.columns.findIndex(
+            (obj: any) => obj.columnDef == key
+          );
+
+          if (columnDetailIndex >= 0) {
+            const columnDetail = this.columns[columnDetailIndex];
+
+            if (
+              columnDetail &&
+              columnDetail["isControlRequired"] &&
+              !columnDetail["isValidationPattern"]
+            ) {
+              tempObj[key] = new FormControl(newControlsObj[key], [
+                Validators.required,
+              ]);
+            } else if (
+              columnDetail &&
+              !columnDetail["isControlRequired"] &&
+              !columnDetail["isValidationPattern"]
+            ) {
+              tempObj[key] = new FormControl(newControlsObj[key]);
+            } else if (
+              columnDetail &&
+              columnDetail["isControlRequired"] &&
+              columnDetail["isValidationPattern"]
+            ) {
+              tempObj[key] = new FormControl(newControlsObj[key], [
+                Validators.required,
+                Validators.pattern(columnDetail["isValidationPattern"]),
+              ]);
+            }
+          }
+        } else {
+          tempObj[key] = new FormControl(newControlsObj[key]);
+        }
+      }
+      resolve(tempObj);
     });
   }
 
@@ -114,7 +156,19 @@ export class CommonTableComponent {
   isAllSelected() {
     const numSelected = this.selection?.selected?.length;
     const numRows = this.dataSource?.data?.length;
+    // this.selectedRows.emit((this.selection && this.selection.selected
+    //   && this.selection.selected.length > 0) ? this.selection.selected : []);
     return numSelected === numRows;
+  }
+
+  onRowSelected(event: any) {
+    this.selectedRows.emit(
+      this.selection &&
+        this.selection.selected &&
+        this.selection.selected.length > 0
+        ? this.selection.selected
+        : []
+    );
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -165,38 +219,18 @@ export class CommonTableComponent {
     console.log("actionType..", actionType);
     console.log("rowData..", rowData);
     console.log("index..", index);
-    if (actionType == "delete") {
-      this.openDeleteDialog(rowData);
+
+    this.rowIndex = index;
+    if (actionType == "edit") {
+      this.isEdit = true;
     }
-  }
 
-  onChildActionClick(actionType: any, rowData: any, index: any) {
-    console.log("actionType..", actionType);
-    console.log("rowData..", rowData);
-    console.log("index..", index);
-    if (actionType == "delete") {
-      this.openDeleteDialog(rowData);
+    if (actionType == "save") {
+      this.isEdit = false;
+      this.rowIndex = null;
+      console.log("form......", this.editTableForm.value);
+      this.updatedData.emit(this.editTableForm.value);
     }
-  }
-
-  openDeleteDialog(detail: any) {
-    const deleteDialog = this.dialog.open(AlertDialogBoxComponent, {
-      width: "400px",
-      data: {
-        title: "Warning",
-        content: "Are you sure, you want to delete?",
-        type: "Confirm",
-      },
-      disableClose: false,
-    });
-    deleteDialog.afterClosed().subscribe((result: any) => {
-      console.log("result.....", result);
-
-      if (result && result == "Yes") {
-        this.deleteData.emit({ detail: detail });
-      }
-      deleteDialog.close();
-    });
   }
 
   setDynamicId(index: any) {
@@ -205,7 +239,6 @@ export class CommonTableComponent {
     } else {
       this.selectedChildRowIndex = index;
     }
-    console.log("trigger........", this.trigger);
   }
 
   closeTableMenu() {
@@ -213,8 +246,6 @@ export class CommonTableComponent {
   }
 
   tableDrop(event: CdkDragDrop<string[]>) {
-    console.log("event....", event);
-
     if (
       (event.currentIndex == 0 || event.previousIndex == 0) &&
       this.displayedColumns.includes("select")

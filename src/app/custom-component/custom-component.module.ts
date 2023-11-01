@@ -8,6 +8,7 @@ import { MaterialModule } from "app/material.module";
 import { SharedModule } from "app/themefolders/shared";
 import { AlertDialogBoxComponent } from "./alert-dialog-box/alert-dialog-box.component";
 import { CdkDrag, CdkDropList, DragDropModule } from "@angular/cdk/drag-drop";
+import { CommonChildTableComponent } from './common-child-table/common-child-table.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CdkDrag, CdkDropList, DragDropModule } from "@angular/cdk/drag-drop";
     CommonTableComponent,
     AlterMessageComponent,
     AlertDialogBoxComponent,
+    CommonChildTableComponent,
   ],
   imports: [
     CommonModule,
