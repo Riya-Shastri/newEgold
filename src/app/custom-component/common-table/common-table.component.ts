@@ -150,6 +150,14 @@ export class CommonTableComponent {
 
   getSearchValue() {
     this.SearchValue.emit(this.searchForm.value.searchValue);
+
+    // const val = this.searchForm.value.searchValue;
+    // const temp = this.dataSource.filteredData.filter((data: any) => {
+    //   return data.Depositor.toLowerCase().indexOf(val) !== -1 || !val;
+    // });
+    // console.log(temp);
+
+    // console.log(this.dataSource.filteredData);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

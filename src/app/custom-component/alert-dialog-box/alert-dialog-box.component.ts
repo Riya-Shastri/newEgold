@@ -1,14 +1,16 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { Component, OnInit, Inject } from "@angular/core";
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatDialog,
+} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-alert-dialog-box',
-  templateUrl: './alert-dialog-box.component.html',
-  styleUrls: ['./alert-dialog-box.component.scss']
+  selector: "app-alert-dialog-box",
+  templateUrl: "./alert-dialog-box.component.html",
+  styleUrls: ["./alert-dialog-box.component.scss"],
 })
 export class AlertDialogBoxComponent {
-
   content: any = "";
   title = "";
   type = "";
@@ -16,8 +18,7 @@ export class AlertDialogBoxComponent {
   constructor(
     public dialogRef: MatDialogRef<AlertDialogBoxComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
-
+  ) {}
 
   onOkClick(): void {
     this.dialogRef.close();

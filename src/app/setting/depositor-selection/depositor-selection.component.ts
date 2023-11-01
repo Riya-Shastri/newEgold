@@ -6,42 +6,61 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./depositor-selection.component.scss"],
 })
 export class DepositorSelectionComponent implements OnInit {
-  columnHeader = [
-    { name: "Depositor Id", sortable: false },
-    { name: "Name", sortable: false },
-    { name: "eGold Code", sortable: false },
-    { name: "SD", sortable: false },
+  totalOrderRecords = 20;
+
+  columns1 = [
+    {
+      columnDef: "DepositorId",
+      header: "Depositor Id",
+      cell: (element: any) => `${element.DepositorId}`,
+    },
+    {
+      columnDef: "Name",
+      header: "Name",
+      cell: (element: any) => `${element.Name}`,
+    },
+    {
+      columnDef: "eGoldCode",
+      header: "eGold Code",
+      cell: (element: any) => `${element.eGoldCode}`,
+    },
+    {
+      columnDef: "SD",
+      header: "SD",
+      cell: (element: any) => `${element.SD}`,
+    },
   ];
-  rowDetails = [
+
+  dataSource1 = [
     {
-      depositorId: "10",
-      name: "Widget",
+      DepositorId: "10",
+      Name: "Widget",
       eGoldCode: "210",
-      sd: "text",
+      SD: "text",
     },
     {
-      depositorId: "10",
-      name: "Widget",
+      DepositorId: "10",
+      Name: "Widget",
       eGoldCode: "210",
-      sd: "text",
+      SD: "text",
     },
     {
-      depositorId: "10",
-      name: "Widget",
+      DepositorId: "10",
+      Name: "Widget",
       eGoldCode: "210",
-      sd: "text",
+      SD: "text",
     },
     {
-      depositorId: "10",
-      name: "Widget",
+      DepositorId: "10",
+      Name: "Widget",
       eGoldCode: "210",
-      sd: "text",
+      SD: "text",
     },
     {
-      depositorId: "10",
-      name: "Widget",
+      DepositorId: "10",
+      Name: "Widget",
       eGoldCode: "210",
-      sd: "text",
+      SD: "text",
     },
   ];
 
@@ -53,5 +72,11 @@ export class DepositorSelectionComponent implements OnInit {
   setOpen() {
     console.log("Call event...");
     this.isOpen = !this.isOpen;
+  }
+
+  sortChange(event: any) {
+    if (event) {
+      console.log("sort Data.....", event);
+    }
   }
 }

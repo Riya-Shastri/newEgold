@@ -1,17 +1,15 @@
-<div class="card mb-3">
-    <!-- <app-common-table [datasource]="rowDetails" [tableHeader]="columnHeader" [checkboxSelect]="true" [Pagination]="50"
-        [limit]="10">
-    </app-common-table> -->
+<app-common-table [columns]="columns1" [dataSource]="dataSource1" [defaultShortKey]="{ id: 'Name', start: 'desc'}"
+    [totalRecords]="totalOrderRecords" [actionType]="{ update: 'true'}" (dataSort)="sortChange($event)">
+</app-common-table>
 
-    <div class="d-flex justify-content-center mt-1 mb-1">
-        <button type="button" class="btn btn-secondary text-white" routerLink="/">
-            Cancel
-        </button>
-        <button type="submit" class="btn btn-primary text-white mx-1" disabled>
-            Update
-        </button>
-        <button type="button" class="btn btn-danger text-white">
-            Delete
-        </button>
-    </div>
+<div class="d-flex justify-content-center mt-1 mb-1">
+    <button type="button" class="btn btn-secondary text-white" routerLink="/">
+        Cancel
+    </button>
+    <button type="submit" class="btn btn-primary text-white mx-1" disabled>
+        Update
+    </button>
+    <button type="button" class="btn btn-danger text-white">
+        Delete
+    </button>
 </div>

@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-oversized-skus",
@@ -12,7 +7,7 @@ import {
   styleUrls: ["./oversized-skus.component.scss"],
 })
 export class OversizedSkusComponent implements OnInit {
-
+  totalOrderRecords = 20;
   productMaximalDimensions: FormGroup;
 
   productDimensionsArr = [
@@ -29,35 +24,47 @@ export class OversizedSkusComponent implements OnInit {
     },
   ];
 
-  columnHeader = [
-    { name: "SKU Code", sortable: false },
-    { name: "Product Name", sortable: false },
-  ];
-
-  rowDetails = [
+  columns1 = [
     {
-      skuCode: "10",
-      productName: "Widget",
+      columnDef: "SKUCode",
+      header: "SKU Code",
+      cell: (element: any) => `${element.SKUCode}`,
     },
     {
-      skuCode: "12",
-      productName: "Widget",
-    },
-    {
-      skuCode: "23",
-      productName: "Widget",
-    },
-    {
-      skuCode: "34",
-      productName: "Widget",
-    },
-    {
-      skuCode: "45",
-      productName: "Widget",
+      columnDef: "ProductName",
+      header: "Product Name",
+      cell: (element: any) => `${element.ProductName}`,
     },
   ];
 
-  constructor(private formBuilder: FormBuilder) { }
+  dataSource1 = [
+    {
+      SKUCode: "10215",
+      ProductName: "Text",
+    },
+    {
+      SKUCode: "10215",
+      ProductName: "Text2",
+    },
+    {
+      SKUCode: "10215",
+      ProductName: "Text3",
+    },
+    {
+      SKUCode: "10215",
+      ProductName: "Text4",
+    },
+    {
+      SKUCode: "10215",
+      ProductName: "Text5",
+    },
+    {
+      SKUCode: "10215",
+      ProductName: "Text10",
+    },
+  ];
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initTableFormGroup();
@@ -103,5 +110,11 @@ export class OversizedSkusComponent implements OnInit {
 
   productMaximalFormSubmit() {
     console.log(this.productMaximalDimensions.value.tableData);
+  }
+
+  sortChange(event: any) {
+    if (event) {
+      console.log("sort Data.....", event);
+    }
   }
 }

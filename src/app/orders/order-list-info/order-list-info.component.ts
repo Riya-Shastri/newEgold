@@ -94,24 +94,99 @@ export class OrderListInfoComponent implements OnInit {
 
   parentDataSource = [
     {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
+      Depositor: "David Lee",
+      OrderID: "1111222233",
+      Source: "www.electrohub.com",
+      Time: "2023-11-06",
+      ShippingType: "Two-Day",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
+          sku: "24681",
+          productName: "Gadget",
+          quantity: 3,
         },
         {
-          sku: "24680",
+          sku: "11112",
+          productName: "Widget",
+          quantity: 2,
+        },
+        {
+          sku: "44444",
+          productName: "Gizmo",
+          quantity: 2,
+        },
+        {
+          sku: "66666",
           productName: "Doohickey",
+          quantity: 4,
+        },
+      ],
+    },
+    {
+      Depositor: "Sarah Taylor",
+      OrderID: "8888888888",
+      Source: "www.gizmogalore.com",
+      Time: "2023-11-05",
+      ShippingType: "Ground",
+      product: [
+        {
+          sku: "11112",
+          productName: "Widget",
           quantity: 2,
         },
       ],
-      Action: "",
+    },
+    {
+      Depositor: "Michael Brown",
+      OrderID: "4444444444",
+      Source: "www.quickmart.com",
+      Time: "2023-11-04",
+      ShippingType: "Overnight",
+      product: [
+        {
+          sku: "99999",
+          productName: "Contraption",
+          quantity: 5,
+        },
+      ],
+    },
+    {
+      Depositor: "Eva Williams",
+      OrderID: "7777777777",
+      Source: "www.shopnow.com",
+      Time: "2023-11-03",
+      ShippingType: "Same Day",
+      product: [
+        {
+          sku: "77777",
+          productName: "Thingamajig",
+          quantity: 3,
+        },
+        {
+          sku: "88888",
+          productName: "Doodad",
+          quantity: 1,
+        },
+      ],
+    },
+    {
+      Depositor: "Bob Johnson",
+      OrderID: "5555555555",
+      Source: "www.testshop.com",
+      Time: "2023-11-02",
+      ShippingType: "Next Day",
+      product: [
+        {
+          sku: "44444",
+          productName: "Gizmo",
+          quantity: 2,
+        },
+        {
+          sku: "66666",
+          productName: "Doohickey",
+          quantity: 4,
+        },
+      ],
     },
     {
       Depositor: "Hydrogen",
@@ -154,304 +229,32 @@ export class OrderListInfoComponent implements OnInit {
       Action: "",
     },
     {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
+      Depositor: "Linda Evans",
+      OrderID: "5555666677",
+      Source: "www.technomarket.com",
+      Time: "2023-11-07",
+      ShippingType: "Standard",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
+          sku: "13579",
+          productName: "Device",
           quantity: 2,
         },
       ],
-      Action: "",
     },
     {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
+      Depositor: "Robert Clark",
+      OrderID: "1234000011",
+      Source: "www.gadgetworld.com",
+      Time: "2023-11-08",
+      ShippingType: "Express",
       product: [
         {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
+          sku: "56789",
+          productName: "Gizmo",
+          quantity: 3,
         },
       ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
-    },
-    {
-      Depositor: "Hydrogen",
-      OrderID: "1607926887075",
-      Source: "www.matero.com",
-      Time: "010-12345678",
-      ShippingType: "matero",
-      product: [
-        {
-          sku: "12345",
-          productName: "Widget",
-          quantity: 5,
-        },
-        {
-          sku: "24680",
-          productName: "Doohickey",
-          quantity: 2,
-        },
-      ],
-      Action: "",
     },
     {
       Depositor: "Hydrogen",
@@ -498,7 +301,7 @@ export class OrderListInfoComponent implements OnInit {
   childTableColumns = [
     {
       columnDef: "sku",
-      header: "sku",
+      header: "SKU",
       cell: (element: any) => `${element.sku}`,
     },
     {
