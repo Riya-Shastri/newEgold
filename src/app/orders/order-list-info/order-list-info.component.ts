@@ -1,4 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-order-list-info",
@@ -6,7 +12,6 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./order-list-info.component.scss"],
 })
 export class OrderListInfoComponent implements OnInit {
-
   totalOrderRecords = 100;
 
   actionsTypeArr = [
@@ -69,22 +74,26 @@ export class OrderListInfoComponent implements OnInit {
       sourceOptions: this.sourceOptions,
       isControlRequired: true,
       isValidationPattern: null,
+      placeholder: "Source",
     },
     {
       columnDef: "Time",
       header: "Time",
       cell: (element: any) => `${element.Time}`,
-      controlType: "text",
+      controlType: "date",
       isControlRequired: true,
       isValidationPattern: null,
+      placeholder: "Time",
     },
     {
       columnDef: "ShippingType",
       header: "ShippingType",
       cell: (element: any) => `${element.ShippingType}`,
       controlType: "text",
+      defaultValue: "",
       isControlRequired: true,
       isValidationPattern: null,
+      placeholder: "ShippingType",
     },
     {
       columnDef: "action",
@@ -304,7 +313,6 @@ export class OrderListInfoComponent implements OnInit {
       columnDef: "select",
       header: "",
       cell: (element: any) => `${element.select}`,
-
     },
     {
       columnDef: "sku",
@@ -348,9 +356,98 @@ export class OrderListInfoComponent implements OnInit {
 
   childDataSourceKey = "product";
 
-  constructor() { }
+  newRecord: FormGroup;
 
-  ngOnInit(): void { }
+  formControls: any = {};
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    // for (const key of Object.keys(this.newRecordControl)) {
+    //   formControls[key] = new FormControl("", [Validators.required]);
+    // }
+
+    this.parentColumns.forEach((ele: any) => {
+      if (
+        ele.columnDef !== "select" &&
+        ele.columnDef !== "action" &&
+        ele.columnDef !== "addAction"
+      ) {
+        if (
+          ele.columnDef &&
+          ele["isControlRequired"] &&
+          !ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl("", [
+            Validators.required,
+          ]);
+        } else if (
+          ele.columnDef &&
+          !ele["isControlRequired"] &&
+          !ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl("", [
+            Validators.required,
+          ]);
+        } else if (
+          ele.columnDef &&
+          ele["isControlRequired"] &&
+          ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl([
+            Validators.required,
+            Validators.pattern(ele["isValidationPattern"]),
+          ]);
+        }
+
+        this.formControls[ele.columnDef] = new FormControl(ele.defaultValue, [
+          Validators.required,
+        ]);
+      }
+    });
+
+    // this.parentColumns.forEach((ele: any) => {
+    //   if (
+    //     ele.columnDef !== "select" &&
+    //     ele.columnDef !== "action" &&
+    //     ele.columnDef !== "addAction"
+    //   ) {
+    //     if (
+    //       ele.columnDef &&
+    //       ele["isControlRequired"] &&
+    //       !ele["isValidationPattern"]
+    //     ) {
+    //       formControls[ele.columnDef] = new FormControl("", [
+    //         Validators.required,
+    //       ]);
+    //     } else if (
+    //       columnDetail &&
+    //       !columnDetail["isControlRequired"] &&
+    //       !columnDetail["isValidationPattern"]
+    //     ) {
+    //       tempObj[key] = new FormControl(newControlsObj[key]);
+    //     } else if (
+    //       columnDetail &&
+    //       columnDetail["isControlRequired"] &&
+    //       columnDetail["isValidationPattern"]
+    //     ) {
+    //       tempObj[key] = new FormControl(newControlsObj[key], [
+    //         Validators.required,
+    //         Validators.pattern(columnDetail["isValidationPattern"]),
+    //       ]);
+    //     }
+    //     formControls[ele.columnDef] = new FormControl(ele.defaultValue, [
+    //       Validators.required,
+    //     ]);
+    //   }
+    // });
+    console.log(this.formControls);
+
+    this.newRecord = this.formBuilder.group(this.formControls);
+  }
+
+  newRecordSubmit() {
+    console.log(this.newRecord.value);
+  }
 
   getEditData(updateData: any) {
     console.log("updateData.....", updateData);
@@ -397,5 +494,4 @@ export class OrderListInfoComponent implements OnInit {
       console.log("get updated child row detail.....", event);
     }
   }
-
 }

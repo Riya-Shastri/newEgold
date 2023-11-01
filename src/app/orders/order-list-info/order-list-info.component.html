@@ -6,3 +6,100 @@
     (updatedData)="getUpdatedDetail($event)" (emitPagesValue)="getCurrentPaginationValue($event)"
     (selectedRows)="getSelectedRows($event)" (updatedChildTableData)="updatedChildTableData($event)">
 </app-common-table>
+
+<div class="col-12">
+    <mat-card class="mb-4">
+        <mat-card-content>
+            <h4> New Record</h4>
+            <form [formGroup]="newRecord" (ngSubmit)="newRecordSubmit()">
+                <div class="row mt-2 d-flex align-item-center justify-content-between">
+                    <ng-container *ngFor="let item of parentColumns">
+
+                        <!-- <div class="col-2">
+                            <input type="{{item.}}" class="form-control mb-1 w-100" [formControlName]="item.columnDef"
+                                [placeholder]="item.key"
+                                [ngClass]="{'is-invalid':newRecord.controls[item.key].touched && newRecord.controls[item.key].invalid}" />
+
+                            <div *ngIf="newRecord.controls[item.key].touched && newRecord.controls[item.key].invalid"
+                                class="text-danger">
+                                {{item.key }} required
+                            </div>
+                        </div> -->
+
+
+                        <div *ngIf="item.columnDef !== 'select' && item.columnDef !== 'action' &&  item.columnDef !== 'addAction'"
+                            class="col-2">
+                            <div *ngIf="item.controlType && item.controlType =='text'">
+                                <input type="text" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.controlType && item.controlType =='number'">
+                                <input type="number" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.controlType && item.controlType =='date'">
+                                <input type="date" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.controlType && item.controlType =='select'
+                        && item.sourceOptions && item.sourceOptions.length > 0">
+                                <select class="form-select form-control" [formControlName]="item.columnDef"
+                                    [ngClass]="{'is-invalid':newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid}">
+                                    <option *ngFor="let opt of item.sourceOptions" [value]="opt.value">
+                                        {{opt.label}}
+                                    </option>
+                                </select>
+                                <div *ngIf="newRecord.controls[item.columnDef].touched && newRecord.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </ng-container>
+                    <div class="col-1">
+                        <button type="submit" class="btn save mx-1" [disabled]="newRecord.invalid">
+                            <mat-icon class="text-primary"> save</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="d-flex justify-content-center mt-3 mb-1">
+    <button type="button" class="btn btn-secondary text-white" routerLink="/">
+        Cancel
+    </button>
+    <button type="submit" class="btn btn-primary text-white mx-1" disabled>
+        Update
+    </button>
+    <button type="button" class="btn btn-danger text-white">
+        Delete
+    </button>
+</div>

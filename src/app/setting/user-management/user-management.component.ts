@@ -1,4 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-user-management",
@@ -8,31 +14,57 @@ import { Component, OnInit } from "@angular/core";
 export class UserManagementComponent implements OnInit {
   totalOrderRecords = 20;
 
+  sourceOptions = [
+    { label: "Admin", value: "admin" },
+    { label: "User", value: "user" },
+  ];
+
   columns1 = [
     {
       columnDef: "UserID",
       header: "User ID",
       cell: (element: any) => `${element.UserID}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "User ID",
     },
     {
       columnDef: "Name",
       header: "Name",
       cell: (element: any) => `${element.Name}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Name",
     },
     {
       columnDef: "Depositor",
       header: "Depositor",
       cell: (element: any) => `${element.Depositor}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Depositor",
     },
     {
       columnDef: "Email",
       header: "Email",
       cell: (element: any) => `${element.Email}`,
+      controlType: "email",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Email",
     },
     {
       columnDef: "Role",
       header: "Role",
       cell: (element: any) => `${element.Role}`,
+      controlType: "select",
+      sourceOptions: this.sourceOptions,
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Role",
     },
     // {
     //   columnDef: "Action",
@@ -116,8 +148,62 @@ export class UserManagementComponent implements OnInit {
 
   actionsTypeArr = [{ name: "edit", isShow: true, icons: "cilPencil" }];
 
-  constructor() {}
-  ngOnInit(): void {}
+  userManagementForm: FormGroup;
+  formControls: any = {};
+
+  constructor(private formBuilder: FormBuilder) {}
+  ngOnInit(): void {
+    this.initalForm();
+  }
+
+  initalForm() {
+    this.columns1.forEach((ele: any) => {
+      if (
+        ele.columnDef !== "select" &&
+        ele.columnDef !== "action" &&
+        ele.columnDef !== "addAction"
+      ) {
+        if (
+          ele.columnDef &&
+          ele["isControlRequired"] &&
+          !ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl("", [
+            Validators.required,
+          ]);
+        } else if (
+          ele.columnDef &&
+          !ele["isControlRequired"] &&
+          !ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl("", [
+            Validators.required,
+          ]);
+        } else if (
+          ele.columnDef &&
+          ele["isControlRequired"] &&
+          ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl([
+            Validators.required,
+            Validators.pattern(ele["isValidationPattern"]),
+          ]);
+        }
+
+        this.formControls[ele.columnDef] = new FormControl(ele.defaultValue, [
+          Validators.required,
+        ]);
+      }
+    });
+
+    console.log(this.formControls);
+
+    this.userManagementForm = this.formBuilder.group(this.formControls);
+  }
+
+  userManagementSubmit() {
+    console.log(this.userManagementForm.value);
+  }
 
   sortChange(event: any) {
     if (event) {

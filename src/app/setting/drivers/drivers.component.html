@@ -2,14 +2,76 @@
     [totalRecords]="totalOrderRecords" [actionType]="{ update: 'true'}" (dataSort)="sortChange($event)">
 </app-common-table>
 
-<div class="d-flex justify-content-center mt-1 mb-1">
-    <button type="button" class="btn btn-secondary text-white" routerLink="/">
-        Cancel
-    </button>
-    <button type="submit" class="btn btn-primary text-white mx-1" disabled>
-        Update
-    </button>
-    <button type="button" class="btn btn-danger text-white">
-        Delete
-    </button>
+
+<div class="col-12">
+    <mat-card class="mb-4">
+        <mat-card-content>
+            <h4> New Record</h4>
+            <form [formGroup]="driversFrom" (ngSubmit)="driversSubmit()">
+                <div class="row mt-2 d-flex align-item-center justify-content-between">
+                    <ng-container *ngFor="let item of columns1">
+
+                        <div *ngIf="item.columnDef !== 'select' && item.columnDef !== 'action' &&  item.columnDef !== 'addAction'"
+                            class="col-2">
+                            <div *ngIf="item.controlType && item.controlType =='text'">
+                                <input type="text" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':driversFrom.controls[item.columnDef].touched && driversFrom.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="driversFrom.controls[item.columnDef].touched && driversFrom.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.controlType && item.controlType =='number'">
+                                <input type="number" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':driversFrom.controls[item.columnDef].touched && driversFrom.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="driversFrom.controls[item.columnDef].touched && driversFrom.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                                <!-- variantForm['quantity']['errors']['min'] -->
+                                <!-- <div *ngIf="driversFrom.controls[item.columnDef]['errors'].[pattern]" class="text-danger">
+                                    {{item.columnDef }} required
+                                </div> -->
+
+                            </div>
+
+                            <div *ngIf="item.controlType && item.controlType =='date'">
+                                <input type="date" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':driversFrom.controls[item.columnDef].touched && driversFrom.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="driversFrom.controls[item.columnDef].touched && driversFrom.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-1">
+                        <button type="submit" class="btn save mx-1" [disabled]="driversFrom.invalid">
+                            <mat-icon class="text-primary">save</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="d-flex justify-content-center mt-1 mb-1">
+                <button type="button" class="btn btn-secondary text-white" routerLink="/">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary text-white mx-1" disabled>
+                    Update
+                </button>
+                <button type="button" class="btn btn-danger text-white">
+                    Delete
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -1,164 +1,163 @@
-<div>
-  <div class="col-12">
-    <mat-card class="mb-4">
-      <mat-card-header class="mb-2">
-        <strong>
-          SETTINGS
-        </strong>
-      </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="generalSettings" (ngSubmit)="settingSubmit()">
+<div class="col-12">
+  <mat-card class="mb-4">
+    <mat-card-header class="mb-2">
+      <strong>
+        SETTINGS
+      </strong>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="generalSettings" (ngSubmit)="settingSubmit()">
 
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <label cLabel class="col-form-label" for="SDToNDVM">
-                Change SD to ND if VM is constrained
-              </label>
-            </div>
-            <div class="col-md-8">
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                  formControlName="changeSDtoND">
-              </div>
-            </div>
-
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label cLabel class="col-form-label" for="SDToNDVM">
+              Change SD to ND if VM is constrained
+            </label>
           </div>
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <label cLabel class="col-form-label" for="dimTolerance">
-                DIM tolerance on VM check (%)
-                <span class="text-danger">*</span>
-              </label>
+          <div class="col-md-8">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                formControlName="changeSDtoND">
             </div>
-
-            <div class="col-md-8">
-              <input type="number" placeholder="Value" class="form-control" formControlName="dimTolerance"
-                [ngClass]="{'is-invalid':generalSettings.controls['dimTolerance'].touched && generalSettings.controls['dimTolerance'].invalid}" />
-              <div
-                *ngIf="generalSettings.controls['dimTolerance'].invalid && (generalSettings.controls['dimTolerance'].dirty || generalSettings.controls['dimTolerance'].touched)"
-                class="text-danger">
-                DIM tolerance on VM check is required
-              </div>
-            </div>
-
           </div>
 
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <label cLabel class=" col-form-label" for="emailSosna">
-                Email Sosna
-                <span class="text-danger">*</span>
-              </label>
-            </div>
-
-            <div class="col-md-8">
-              <input type="text" placeholder="Value" class="form-control" formControlName="emailSosna"
-                [ngClass]="{'is-invalid':generalSettings.controls['emailSosna'].touched && generalSettings.controls['emailSosna'].invalid}" />
-              <div
-                *ngIf="generalSettings.controls['emailSosna'].invalid && (generalSettings.controls['emailSosna'].dirty || generalSettings.controls['emailSosna'].touched)"
-                class="text-danger">
-                Email Sosna is required
-              </div>
-            </div>
-
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label cLabel class="col-form-label" for="dimTolerance">
+              DIM tolerance on VM check (%)
+              <span class="text-danger">*</span>
+            </label>
           </div>
 
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <label cLabel class="col-form-label" for="emailCheetah">
-                Email Cheetah
-                <span class="text-danger">*</span>
-              </label>
+          <div class="col-md-8">
+            <input type="number" placeholder="Value" class="form-control" formControlName="dimTolerance"
+              [ngClass]="{'is-invalid':generalSettings.controls['dimTolerance'].touched && generalSettings.controls['dimTolerance'].invalid}" />
+            <div
+              *ngIf="generalSettings.controls['dimTolerance'].invalid && (generalSettings.controls['dimTolerance'].dirty || generalSettings.controls['dimTolerance'].touched)"
+              class="text-danger">
+              DIM tolerance on VM check is required
             </div>
-
-            <div class="col-md-8">
-              <input type="text" placeholder="Value" class="form-control" formControlName="emailCheetah"
-                [ngClass]="{'is-invalid':generalSettings.controls['emailCheetah'].touched && generalSettings.controls['emailCheetah'].invalid}" />
-              <div
-                *ngIf="generalSettings.controls['emailCheetah'].invalid && (generalSettings.controls['emailCheetah'].dirty || generalSettings.controls['emailCheetah'].touched)"
-                class="text-danger">
-                Email Cheetah is required
-              </div>
-            </div>
-
           </div>
 
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <label cLabel class="col-form-label" for="emailFlyingCargo">
-                Email FlyingCargo (FCE & Boxit)
-                <span class="text-danger">*</span>
-              </label>
-            </div>
+        </div>
 
-            <div class="col-md-8">
-              <input type="text" placeholder="Value" class="form-control" formControlName="emailFlyingCargo"
-                [ngClass]="{'is-invalid':generalSettings.controls['emailFlyingCargo'].touched && generalSettings.controls['emailFlyingCargo'].invalid}" />
-              <div
-                *ngIf="generalSettings.controls['emailFlyingCargo'].invalid && (generalSettings.controls['emailFlyingCargo'].dirty || generalSettings.controls['emailFlyingCargo'].touched)"
-                class="text-danger">
-                Email FlyingCargo (FCE & Boxit) is required
-              </div>
-            </div>
-
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label cLabel class=" col-form-label" for="emailSosna">
+              Email Sosna
+              <span class="text-danger">*</span>
+            </label>
           </div>
 
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <label cLabel class="col-form-label" for="mailKatz">
-                Mail Katz
-                <span class="text-danger">*</span>
-              </label>
+          <div class="col-md-8">
+            <input type="text" placeholder="Value" class="form-control" formControlName="emailSosna"
+              [ngClass]="{'is-invalid':generalSettings.controls['emailSosna'].touched && generalSettings.controls['emailSosna'].invalid}" />
+            <div
+              *ngIf="generalSettings.controls['emailSosna'].invalid && (generalSettings.controls['emailSosna'].dirty || generalSettings.controls['emailSosna'].touched)"
+              class="text-danger">
+              Email Sosna is required
             </div>
-
-            <div class="col-md-8">
-              <input type="text" placeholder="Value" class="form-control" formControlName="mailKatz"
-                [ngClass]="{'is-invalid':generalSettings.controls['mailKatz'].touched && generalSettings.controls['mailKatz'].invalid}" />
-              <div
-                *ngIf="generalSettings.controls['mailKatz'].invalid && (generalSettings.controls['mailKatz'].dirty || generalSettings.controls['mailKatz'].touched)"
-                class="text-danger">
-                Mail Katz is required
-              </div>
-            </div>
-
           </div>
 
-          <div class="row mb-3 form-group">
-            <div class="col-md-4">
-              <label cLabel class="col-form-label" for="dispatchAlertEmaila">
-                Dispatch monitor alert emails
-                <span class="text-danger">*</span>
-              </label>
-            </div>
+        </div>
 
-            <div class="col-md-8">
-              <input type="text" placeholder="Value" class="form-control" formControlName="dispatchAlertEmail"
-                [ngClass]="{'is-invalid':generalSettings.controls['dispatchAlertEmail'].touched && generalSettings.controls['dispatchAlertEmail'].invalid}" />
-              <div
-                *ngIf="generalSettings.controls['dispatchAlertEmail'].invalid && (generalSettings.controls['dispatchAlertEmail'].dirty || generalSettings.controls['dispatchAlertEmail'].touched)"
-                class="text-danger">
-                Dispatch monitor alert emails is required
-              </div>
-            </div>
-
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label cLabel class="col-form-label" for="emailCheetah">
+              Email Cheetah
+              <span class="text-danger">*</span>
+            </label>
           </div>
 
-          <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-secondary text-white" routerLink="/">
-              Cancel
-            </button>
-            <button type="submit" class="btn btn-primary mx-1" [disabled]="generalSettings.invalid">
-              Update
-            </button>
+          <div class="col-md-8">
+            <input type="text" placeholder="Value" class="form-control" formControlName="emailCheetah"
+              [ngClass]="{'is-invalid':generalSettings.controls['emailCheetah'].touched && generalSettings.controls['emailCheetah'].invalid}" />
+            <div
+              *ngIf="generalSettings.controls['emailCheetah'].invalid && (generalSettings.controls['emailCheetah'].dirty || generalSettings.controls['emailCheetah'].touched)"
+              class="text-danger">
+              Email Cheetah is required
+            </div>
           </div>
 
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label cLabel class="col-form-label" for="emailFlyingCargo">
+              Email FlyingCargo (FCE & Boxit)
+              <span class="text-danger">*</span>
+            </label>
+          </div>
+
+          <div class="col-md-8">
+            <input type="text" placeholder="Value" class="form-control" formControlName="emailFlyingCargo"
+              [ngClass]="{'is-invalid':generalSettings.controls['emailFlyingCargo'].touched && generalSettings.controls['emailFlyingCargo'].invalid}" />
+            <div
+              *ngIf="generalSettings.controls['emailFlyingCargo'].invalid && (generalSettings.controls['emailFlyingCargo'].dirty || generalSettings.controls['emailFlyingCargo'].touched)"
+              class="text-danger">
+              Email FlyingCargo (FCE & Boxit) is required
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label cLabel class="col-form-label" for="mailKatz">
+              Mail Katz
+              <span class="text-danger">*</span>
+            </label>
+          </div>
+
+          <div class="col-md-8">
+            <input type="text" placeholder="Value" class="form-control" formControlName="mailKatz"
+              [ngClass]="{'is-invalid':generalSettings.controls['mailKatz'].touched && generalSettings.controls['mailKatz'].invalid}" />
+            <div
+              *ngIf="generalSettings.controls['mailKatz'].invalid && (generalSettings.controls['mailKatz'].dirty || generalSettings.controls['mailKatz'].touched)"
+              class="text-danger">
+              Mail Katz is required
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mb-3 form-group">
+          <div class="col-md-4">
+            <label cLabel class="col-form-label" for="dispatchAlertEmaila">
+              Dispatch monitor alert emails
+              <span class="text-danger">*</span>
+            </label>
+          </div>
+
+          <div class="col-md-8">
+            <input type="text" placeholder="Value" class="form-control" formControlName="dispatchAlertEmail"
+              [ngClass]="{'is-invalid':generalSettings.controls['dispatchAlertEmail'].touched && generalSettings.controls['dispatchAlertEmail'].invalid}" />
+            <div
+              *ngIf="generalSettings.controls['dispatchAlertEmail'].invalid && (generalSettings.controls['dispatchAlertEmail'].dirty || generalSettings.controls['dispatchAlertEmail'].touched)"
+              class="text-danger">
+              Dispatch monitor alert emails is required
+            </div>
+          </div>
+
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary text-white" routerLink="/">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary mx-1" [disabled]="generalSettings.invalid">
+            Update
+          </button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
 
-<div>
+
+<!-- <div>
   <div class="col-12">
     <mat-card class="mb-4">
       <mat-card-header>
@@ -176,16 +175,22 @@
                 <span class="text-danger">*</span>
               </label>
             </div>
-            <div class="col-md-4 d-flex align-items-center">
-              <label cLabel class="col-form-label mt-1" for="startNDSD">
-                Start:
-              </label>
-              <input type="number" class="form-control mx-2" placeholder="HH" formControlName="NDtoSDstartHH"
-                [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartHH'].touched && generalOTFrames.controls['NDtoSDstartHH'].invalid}" />:
 
-              <input type="number" class="form-control mx-2" placeholder="MM" formControlName="NDtoSDstartMM"
-                [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartMM'].touched && generalOTFrames.controls['NDtoSDstartMM'].invalid}" />
+            <div class="col-md-4">
+              <div class="d-flex align-item-center justify-content-between">
+                <label cLabel class="col-form-label mt-1" for="startNDSD">
+                  Start:
+                </label>
+                <input type="number" class="form-control mx-2" placeholder="HH" formControlName="NDtoSDstartHH"
+                  [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartHH'].touched && generalOTFrames.controls['NDtoSDstartHH'].invalid}" />
+                <input type="number" class="form-control mx-2" placeholder="MM" formControlName="NDtoSDstartMM"
+                  [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartMM'].touched && generalOTFrames.controls['NDtoSDstartMM'].invalid}" />
+
+              </div>
             </div>
+
+
+
             <div class="col-md-4 d-flex align-items-center">
               <label cLabel class="col-form-label mt-1" for="startNDSD">
                 End:
@@ -198,6 +203,15 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+              <div class="text-danger">
+                Minimum houes required
+              </div>
+            </div>
+            <div class="col-4"></div>
+          </div>
           <div class="row mt-2 d-flex align-items-center">
             <div class="col-md-4">
               <label cLabel class="col-form-label" for="operational time">
@@ -216,6 +230,140 @@
             </div>
           </div>
 
+
+          <div class="d-flex mt-2 justify-content-center">
+            <button type="button" class="btn btn-secondary text-white" routerLink="/">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary text-white mx-1" [disabled]="!generalOTFrames.valid">
+              Update
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> -->
+
+
+<div>
+  <div class="col-12">
+    <mat-card class="mb-4">
+      <mat-card-header>
+        <strong>
+          Operational Time frames
+        </strong>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="generalOTFrames" (ngSubmit)="OTframeSubmit()">
+          <table class="table table-responsive table-borderless">
+            <thead>
+              <tr class="d-flex">
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row">
+                <td class="col-3">
+                  ND to SD change time-window
+                  <span class="text-danger">*</span>
+                </td>
+
+                <td class="col-1 text-end">
+                  Start:
+                </td>
+
+                <td class="col-3">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <input type="number" class="form-control w-75" placeholder="HH" formControlName="NDtoSDstartHH"
+                        [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartHH'].touched && generalOTFrames.controls['NDtoSDstartHH'].invalid}" />
+
+                      <div
+                        *ngIf="generalOTFrames.controls['NDtoSDstartHH'].invalid && (generalOTFrames.controls['NDtoSDstartHH'].dirty || generalOTFrames.controls['NDtoSDstartHH'].touched)"
+                        class="text-danger">
+                        Hours is required
+                      </div>
+
+                    </div>
+
+                    <div>
+
+                      <input type="number" class="form-control w-75" placeholder="MM" formControlName="NDtoSDstartMM"
+                        [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDstartMM'].touched && generalOTFrames.controls['NDtoSDstartMM'].invalid}" />
+
+                      <div
+                        *ngIf="generalOTFrames.controls['NDtoSDstartMM'].invalid && (generalOTFrames.controls['NDtoSDstartMM'].dirty || generalOTFrames.controls['NDtoSDstartMM'].touched)"
+                        class="text-danger text-end">
+                        Minute is required
+                      </div>
+                    </div>
+
+
+                  </div>
+                </td>
+
+                <td class="col-1 text-end">
+                  End:
+                </td>
+
+                <td class="col-3">
+                  <div class="d-flex">
+                    <div>
+                      <input type="number" class="form-control w-75" placeholder="HH" formControlName="NDtoSDendHH"
+                        [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDendHH'].touched && generalOTFrames.controls['NDtoSDendHH'].invalid}" />
+                      <div
+                        *ngIf="generalOTFrames.controls['NDtoSDendHH'].invalid && (generalOTFrames.controls['NDtoSDendHH'].dirty || generalOTFrames.controls['NDtoSDendHH'].touched)"
+                        class="text-danger">
+                        Hours is required
+                      </div>
+                    </div>
+                    <div>
+                      <input type="number" class="form-control w-75" placeholder="MM" formControlName="NDtoSDendMM"
+                        [ngClass]="{'is-invalid':generalOTFrames.controls['NDtoSDendMM'].touched && generalOTFrames.controls['NDtoSDendMM'].invalid}" />
+                      <div
+                        *ngIf="generalOTFrames.controls['NDtoSDendMM'].invalid && (generalOTFrames.controls['NDtoSDendMM'].dirty || generalOTFrames.controls['NDtoSDendMM'].touched)"
+                        class="text-danger text-end">
+                        Minute is required
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+              </tr>
+              <tr class="row">
+                <td class="col-3">
+                  SD accept time of day threshold
+                  <span class="text-danger">*</span>
+                </td>
+                <td class="col-1 text-end">
+                  Start:
+                </td>
+                <td class="col-3">
+                  <div class="d-flex">
+                    <div>
+                      <input type="number" class="form-control w-75" placeholder="HH" formControlName="SDacceptStartHH"
+                        [ngClass]="{'is-invalid':generalOTFrames.controls['SDacceptStartHH'].touched && generalOTFrames.controls['SDacceptStartHH'].invalid}" />
+                      <div
+                        *ngIf="generalOTFrames.controls['SDacceptStartHH'].invalid && (generalOTFrames.controls['SDacceptStartHH'].dirty || generalOTFrames.controls['SDacceptStartHH'].touched)"
+                        class="text-danger">
+                        Hours is required
+                      </div>
+                    </div>
+                    <div>
+
+                      <input type="number" class="form-control w-75" placeholder="MM" formControlName="SDacceptStartMM"
+                        [ngClass]="{'is-invalid':generalOTFrames.controls['SDacceptStartMM'].touched && generalOTFrames.controls['SDacceptStartMM'].invalid}" />
+                      <div
+                        *ngIf="generalOTFrames.controls['SDacceptStartMM'].invalid && (generalOTFrames.controls['SDacceptStartMM'].dirty || generalOTFrames.controls['SDacceptStartMM'].touched)"
+                        class="text-danger text-end">
+                        Minute is required
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <div class="d-flex mt-2 justify-content-center">
             <button type="button" class="btn btn-secondary text-white" routerLink="/">

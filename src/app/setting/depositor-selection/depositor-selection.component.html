@@ -1,43 +1,84 @@
-<div class="col-12">
-    <mat-card class="mb-4">
-        <mat-card-header>
-            <div class="d-flex flex-row">
-                <strong>
-                    Depositor:
-                </strong>
-                <div>
-                    <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setOpen()">
-                        {{isOpen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
-                    </mat-icon>
-                    <!-- <mat-icon class="text-primary">keyboard_arrow_down
+<div class="d-flex flex-row">
+    <strong>
+        Depositor:
+    </strong>
+    <div>
+        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setOpen()">
+            {{isOpen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
+        </mat-icon>
+        <!-- <mat-icon class="text-primary">keyboard_arrow_down
                     </mat-icon> -->
 
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                            <span>Text</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Item-1</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Item-2</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Item-3</span>
-                        </button>
-                        <button mat-menu-item>
-                            <span>Item-4</span>
-                        </button>
-                    </mat-menu>
-                </div>
-            </div>
-        </mat-card-header>
-        <mat-card-content class="mt-4">
-            <app-common-table [columns]="columns1" [dataSource]="dataSource1"
-                [defaultShortKey]="{ id: 'Name', start: 'desc'}" [totalRecords]="totalOrderRecords"
-                [actionType]="{ update: 'true'}" (dataSort)="sortChange($event)">
-            </app-common-table>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <span>Text</span>
+            </button>
+            <button mat-menu-item>
+                <span>Item-1</span>
+            </button>
+            <button mat-menu-item>
+                <span>Item-2</span>
+            </button>
+            <button mat-menu-item>
+                <span>Item-3</span>
+            </button>
+            <button mat-menu-item>
+                <span>Item-4</span>
+            </button>
+        </mat-menu>
+    </div>
+</div>
 
+
+<app-common-table [columns]="columns1" [dataSource]="dataSource1" [defaultShortKey]="{ id: 'Name', start: 'desc'}"
+    [totalRecords]="totalOrderRecords" [actionType]="{ update: 'true'}" (dataSort)="sortChange($event)">
+</app-common-table>
+
+<div class="col-12">
+    <mat-card class="mb-4">
+        <mat-card-content class="mt-4">
+            <h4> New Record</h4>
+            <form [formGroup]="depositorForm" (ngSubmit)="depositorFormSubmit()">
+                <div class="row mt-2 d-flex align-item-center justify-content-arround">
+                    <ng-container *ngFor="let item of columns1">
+
+                        <div *ngIf="item.columnDef !== 'select' && item.columnDef !== 'action' &&  item.columnDef !== 'addAction'"
+                            class="col-2">
+                            <div *ngIf="item.controlType && item.controlType =='text'">
+                                <input type="text" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':depositorForm.controls[item.columnDef].touched && depositorForm.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="depositorForm.controls[item.columnDef].touched && depositorForm.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.controlType && item.controlType =='number'">
+                                <input type="number" class="form-control" [formControlName]="item.columnDef"
+                                    [placeholder]="item.placeholder ? item.placeholder : '' "
+                                    [ngClass]="{'is-invalid':depositorForm.controls[item.columnDef].touched && depositorForm.controls[item.columnDef].invalid}" />
+
+                                <div *ngIf="depositorForm.controls[item.columnDef].touched && depositorForm.controls[item.columnDef].invalid"
+                                    class="text-danger">
+                                    {{item.columnDef }} required
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </ng-container>
+                    <div class="col-1">
+                        <button type="submit" class="btn save mx-1" [disabled]="depositorForm.invalid">
+                            <mat-icon class="text-primary"> save</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-secondary text-white" routerLink="/">
                     Cancel
@@ -51,6 +92,5 @@
             </div>
         </mat-card-content>
     </mat-card>
-
 
 </div>

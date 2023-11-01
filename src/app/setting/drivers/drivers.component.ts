@@ -1,4 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-drivers",
@@ -13,21 +19,37 @@ export class DriversComponent implements OnInit {
       columnDef: "DriverID",
       header: "Driver ID",
       cell: (element: any) => `${element.DriverID}`,
+      controlType: "number",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "DriverID",
     },
     {
       columnDef: "Name",
       header: "Name",
       cell: (element: any) => `${element.Name}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "Name",
     },
     {
       columnDef: "LastName",
       header: "Last Name",
       cell: (element: any) => `${element.LastName}`,
+      controlType: "text",
+      isControlRequired: true,
+      isValidationPattern: null,
+      placeholder: "LastName",
     },
     {
       columnDef: "Phone",
       header: "Phone",
       cell: (element: any) => `${element.Phone}`,
+      controlType: "number",
+      isControlRequired: true,
+      isValidationPattern: "[0-9]{10}",
+      placeholder: "Phone",
     },
   ];
 
@@ -94,8 +116,62 @@ export class DriversComponent implements OnInit {
     },
   ];
 
-  constructor() {}
-  ngOnInit(): void {}
+  driversFrom: FormGroup;
+  formControls: any = {};
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initialForm();
+  }
+
+  initialForm() {
+    this.columns1.forEach((ele: any) => {
+      if (
+        ele.columnDef !== "select" &&
+        ele.columnDef !== "action" &&
+        ele.columnDef !== "addAction"
+      ) {
+        if (
+          ele.columnDef &&
+          ele["isControlRequired"] &&
+          !ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl("", [
+            Validators.required,
+          ]);
+        } else if (
+          ele.columnDef &&
+          !ele["isControlRequired"] &&
+          !ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl("", [
+            Validators.required,
+          ]);
+        } else if (
+          ele.columnDef &&
+          ele["isControlRequired"] &&
+          ele["isValidationPattern"]
+        ) {
+          this.formControls[ele.columnDef] = new FormControl([
+            Validators.required,
+            Validators.pattern(ele["isValidationPattern"]),
+          ]);
+        }
+
+        this.formControls[ele.columnDef] = new FormControl(ele.defaultValue, [
+          Validators.required,
+        ]);
+      }
+    });
+
+    console.log(this.formControls["Phone"]);
+    this.driversFrom = this.formBuilder.group(this.formControls);
+  }
+
+  driversSubmit() {
+    console.log(this.driversFrom.value);
+  }
 
   sortChange(event: any) {
     if (event) {

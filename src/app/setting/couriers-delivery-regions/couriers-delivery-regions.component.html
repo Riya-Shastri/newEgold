@@ -8,100 +8,44 @@
             </mat-card-header>
             <mat-card-content class="mt-2">
 
-                <div class="row mb-3">
-                    <div class="col-2">
-                        <label class="col-form-label" for="SDToNDVM">
-                            Same Day deliveries
-                        </label>
-                    </div>
-                    <div class="col-10 d-flex align-items-center">
-                        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
-                            <!-- arrow_drop_down -->
-                            {{isopen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
-                        </mat-icon>
+                <ng-container *ngFor="let item of metMenuArr;">
+                    <div class="row mb-3">
+                        <div class="col-2">
+                            <label class="col-form-label" for="SDToNDVM">
+                                {{item.name}}
+                            </label>
+                        </div>
+                        <div class="col-10 d-flex align-items-center">
+                            <mat-icon class="text-primary" [matMenuTriggerFor]="menu">
+                                {{isopen === false ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
+                            </mat-icon>
 
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <span>Text</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-1</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-2</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-3</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-4</span>
-                            </button>
-                        </mat-menu>
+                            <mat-menu #menu="matMenu" [hasBackdrop]="item.isOpen" yPosition="below" xPosition="after">
+                                <ng-container *ngFor="let opt of item.options">
+                                    <button mat-menu-item>
+                                        <span>{{opt.opt}}</span>
+                                    </button>
+                                </ng-container>
+                                <!-- <button mat-menu-item>
+                                    <span>Text</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <span>Item-1</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <span>Item-2</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <span>Item-3</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <span>Item-4</span>
+                                </button> -->
+                            </mat-menu>
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-2">
-                        <label class="col-form-label" for="SDToNDVM">
-                            Next Day deliveries
-                        </label>
-                    </div>
-                    <div class="col-10 d-flex align-items-center">
-                        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
-                            <!-- arrow_drop_down -->
-                            {{isopen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
-                        </mat-icon>
+                </ng-container>
 
-                        <mat-menu #menu="matMenu" xPosition="before">
-                            <button mat-menu-item>
-                                <span>Text</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-1</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-2</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-3</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-4</span>
-                            </button>
-                        </mat-menu>
-                    </div>
-
-                </div>
-                <div class="row mb-3">
-                    <div class="col-2">
-                        <label class="col-form-label" for="SDToNDVM">
-                            Locker deliveries
-                        </label>
-                    </div>
-                    <div class="col-10 d-flex align-items-center">
-                        <mat-icon class="text-primary" [matMenuTriggerFor]="menu" (click)="setIsOpen()">
-                            <!-- arrow_drop_down -->
-                            {{isopen === true ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
-                        </mat-icon>
-
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <span>Text</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-1</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-2</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-3</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Item-4</span>
-                            </button>
-                        </mat-menu>
-                    </div>
-                </div>
 
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn btn-secondary text-white" routerLink="/">
