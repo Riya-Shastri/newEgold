@@ -97,9 +97,11 @@
           {{column.header}}
         </th>
         <td mat-cell *matCellDef="let row ;  let i = index;">
+
           <div *ngIf="(rowIndex !== i)">
             {{column.cell(row)}}
           </div>
+
           <div *ngIf="rowIndex == i && isEdit">
 
             <div *ngIf="column.controlType && column.controlType =='text'">
@@ -123,6 +125,7 @@
               </select>
             </div>
           </div>
+
         </td>
       </ng-container>
 
@@ -133,7 +136,7 @@
           {{column.header}}
         </th>
         <td mat-cell *matCellDef="let element let i=index">
-          <div *ngIf="(!rowIndex && rowIndex !== i)">
+          <div *ngIf="(rowIndex !== i)">
             <ng-container *ngFor="let act of actionType">
               <mat-icon class="mx-2 {{act.class}}" (click)="onActionClick(act.name , element , i )">
                 {{act.icons}}
